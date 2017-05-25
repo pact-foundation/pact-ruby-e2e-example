@@ -50,3 +50,16 @@ Code base to use for recreating issues in the ruby implementation of pact. Pleas
     export PACT_BROKER_PASSWORD=your_password
 
 * In the root directory of this project, run `bundle exec rake pact:verify:foobar_using_remote_broker`
+
+## Reporting the issue
+
+* Commit your code on a branch (so you can reuse it for other issues cleanly) and push it to your fork
+
+    git checkout -b "foo-issue"
+    git add .
+    git commit -m "Modifying code to recreate my issue"
+    git push --set-upstream origin foo-issue
+
+* Open an issue in the appropriate codebase (see [pact-foundation][pact-foundation] for most of the repositories) and include a link to your branch.
+
+[pact-foundation]:https://github.com/pact-foundation
