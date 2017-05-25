@@ -51,7 +51,7 @@ Code base to use for demonstrating features or recreating issues in the ruby imp
 
 * In the root directory of this project, run `bundle exec rake pact:verify:foobar_using_remote_broker`
 
-## Reporting the issue
+## Reporting an issue
 
 * Commit your code on a branch (so you can reuse it for other issues cleanly) and push it to your fork
 
