@@ -1,5 +1,5 @@
 # Pact Ruby End to End Example
-Code base to use for recreating issues in the ruby implementation of pact. Please fork it and modify to recreate your own issue.
+Code base to use for demonstrating features or recreating issues in the ruby implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
 
 ## Usage
 
