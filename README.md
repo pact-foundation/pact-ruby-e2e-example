@@ -30,7 +30,7 @@ Code base to use for demonstrating features or recreating issues in the ruby imp
 
 ### To recreate issues with a local pact broker
 
-* Set the correct gem versions in `pact_broker/Gemfile`.
+* Set the exact gem versions in `pact_broker/Gemfile` and run `bundle update`.
 
 * In another terminal, cd into the `pact_broker` directory and run `bundle exec rackup`.
 
