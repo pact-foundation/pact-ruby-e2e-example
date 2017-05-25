@@ -3,6 +3,11 @@ Code base to use for recreating issues in the ruby implementation of pact. Pleas
 
 ## Usage
 
+### Clone the codebase
+
+    git clone git@github.com:YOUR_USERNAME/pact-ruby-issue-recreator.git
+    cd pact-ruby-issue-recreator
+
 ### Set the gem versions you are using
 
 * Open up the `Gemfile` and set the exact gem versions you are using. eg `gem "pact", "1.12.1"`
