@@ -1,7 +1,7 @@
 # Pact Ruby End to End Example
 Code base to use for demonstrating features or recreating issues in the ruby implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
 
-This code base is _not_ intended as an example of a best practice pact implementation. Its purpose is to create a running example with the simplest code possible.
+This code base is _not_ intended as an example of a best practice pact implementation. Its purpose is to create a running example with the simplest code possible. If you want to see an example of how you would use pact in a Ruby consumer or provider project, see the [example] dir in the pact repository.
 
 ## Usage
 
@@ -64,4 +64,5 @@ This code base is _not_ intended as an example of a best practice pact implement
 
 * Open an issue in the appropriate codebase (see [pact-foundation][pact-foundation] for most of the repositories) and include a link to your branch.
 
-[pact-foundation]:https://github.com/pact-foundation
+[pact-foundation]: https://github.com/pact-foundation
+[example]: https://github.com/realestate-com-au/pact/tree/master/example
