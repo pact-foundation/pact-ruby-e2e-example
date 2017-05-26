@@ -1,6 +1,8 @@
 # Pact Ruby End to End Example
 Code base to use for demonstrating features or recreating issues in the ruby implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
 
+This code base is _not_ intended as an example of a best practice pact implementation. Its purpose is to create a running example with the simplest code possible.
+
 ## Usage
 
 ### Clone the codebase
