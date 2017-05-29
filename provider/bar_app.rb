@@ -3,7 +3,7 @@ class BarApp
     status = 200
     headers = {'Content-Type' => 'application/json'}
     body = {
-        thing: { test: "Not the same words", bar: "Different words"},
+        thing: [1],
         array: [1, 2, 3]
     }.to_json
     [status, headers, [body]]
