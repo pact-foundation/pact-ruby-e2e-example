@@ -21,22 +21,25 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "company": "My big company",
-          "factories": [
-            {
-              "location": "Sydney",
-              "capacity": 5
-            }
+          "thing": {
+            "test": "My thing",
+            "bar": "Another thing"
+          },
+          "array": [
+            1
           ]
         },
         "matchingRules": {
-          "$.body.company": {
+          "$.body.thing.test": {
             "match": "type"
           },
-          "$.body.factories": {
+          "$.body.thing.bar": {
+            "match": "type"
+          },
+          "$.body.array": {
             "min": 1
           },
-          "$.body.factories[*].*": {
+          "$.body.array[*].*": {
             "match": "type"
           }
         }

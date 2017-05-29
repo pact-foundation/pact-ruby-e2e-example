@@ -1,5 +1,6 @@
 require 'pact/tasks/verification_task'
 require 'pact_broker/client/tasks'
+require 'pact/tasks'
 
 LOCAL_PACT_BROKER_BASE_URL = 'http://localhost:9292'
 REMOTE_PACT_BROKER_BASE_URL = 'https://test.pact.dius.com.au'

@@ -4,20 +4,20 @@ require_relative 'pact_helper'
 
 describe "BarClient", :pact => true do
   it "can retrieve a thing"  do
-    bar_service.
-      upon_receiving("a retrieve thing request").with({
-      method: :get,
-      path: '/thing',
-      headers: {'Accept' => 'application/json'}
-    }).
-      will_respond_with({
-      status: 200,
-      headers: { 'Content-Type' => 'application/json' },
-      body: {
-        company: Pact.like("My big company"),
-        factories: Pact.each_like(location: "Sydney", capacity: 5)
-      }
-    })
+      bar_service.
+        upon_receiving("a retrieve thing request").with({
+        method: :get,
+        path: '/thing',
+        headers: {'Accept' => 'application/json'}
+      }).
+        will_respond_with({
+        status: 200,
+        headers: { 'Content-Type' => 'application/json' },
+        body: {
+          thing: Pact.like({test: "My thing", bar: "Another thing"}),
+          array: Pact.each_like(1)
+        }
+      })
 
     # This request would normally be performed some BarClient class,
     # but just use simple request for the purposes of this test
