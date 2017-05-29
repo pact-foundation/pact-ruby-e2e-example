@@ -15,8 +15,8 @@ describe "BarClient", :pact => true do
         status: 200,
         headers: { 'Content-Type' => 'application/json' },
         body: {
-          company: Pact.like("My big company"),
-          factories: Pact.each_like(location: "Sydney", capacity: 5)
+          thing: Pact.like({test: "My thing", bar: "Another thing"}),
+          array: Pact.each_like(1)
         }
       })
 
@@ -28,5 +28,6 @@ describe "BarClient", :pact => true do
       # (eg. check for an array of Factory classes )
       # but just check the response code for the purposes of this test
       expect(bar_response.status).to eql 200
+
   end
 end
