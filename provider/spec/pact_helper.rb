@@ -1,6 +1,7 @@
 require_relative '../bar_app.rb'
 
 Pact.configuration.reports_dir = "./provider/reports"
+# Pact.configuration.diff_formatter = :list
 
 Pact.service_provider "Bar" do
   app { BarApp.new }

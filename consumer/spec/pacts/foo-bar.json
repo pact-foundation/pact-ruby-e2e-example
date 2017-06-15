@@ -27,19 +27,69 @@
           },
           "array": [
             1
+          ],
+          "nested": {
+            "long": {
+              "path": {
+                "to": {
+                  "a": {
+                    "person": {
+                      "firstName": "Foo",
+                      "lastName": "Bar",
+                      "driversLicence": "ABC567"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "address": {
+            "street": "200 Bourke St",
+            "suburb": "Melbourne"
+          },
+          "phone": "0412 746 345",
+          "mother": "Mary",
+          "father": null,
+          "favouriteColours": [
+            "red"
+          ],
+          "favouriteMovies": [
+            "Jaws",
+            "The Sound of Music"
+          ],
+          "children": [
+            {
+              "name": "Susan",
+              "age": 7
+            }
+          ],
+          "parents": [
+            {
+              "name": "Adam"
+            },
+            {
+              "name": "Eve"
+            }
           ]
         },
         "matchingRules": {
-          "$.body.thing.test": {
-            "match": "type"
-          },
-          "$.body.thing.bar": {
+          "$.body.thing": {
             "match": "type"
           },
           "$.body.array": {
             "min": 1
           },
           "$.body.array[*].*": {
+            "match": "type"
+          },
+          "$.body.nested.long.path.to.a.person.driversLicence": {
+            "match": "regex",
+            "regex": "ABC\\d+"
+          },
+          "$.body.children": {
+            "min": 1
+          },
+          "$.body.children[*].*": {
             "match": "type"
           }
         }
