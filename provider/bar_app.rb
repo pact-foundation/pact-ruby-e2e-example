@@ -3,7 +3,7 @@ MEDIUM_TEXT = medium_text + medium_text + medium_text
 class BarApp
   def call env
     status = 200
-    headers = {'Content-Type' => 'application/json'}
+    headers = {'Content-Type' => 'application/jsonish'}
     body = {
         thing: [1],
         array: [1, 2, 3],

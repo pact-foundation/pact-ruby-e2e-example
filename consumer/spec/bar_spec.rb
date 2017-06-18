@@ -8,7 +8,7 @@ describe "BarClient", :pact => true do
         upon_receiving("a retrieve thing request").with({
         method: :get,
         path: '/thing',
-        headers: {'Accept' => 'application/json'}
+        headers: {'Accept' => Pact.term(/application\/.*json/, "application/json")}
       }).
         will_respond_with({
         status: 200,

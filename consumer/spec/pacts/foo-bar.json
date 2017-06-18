@@ -13,6 +13,12 @@
         "path": "/thing",
         "headers": {
           "Accept": "application/json"
+        },
+        "matchingRules": {
+          "$.headers.Accept": {
+            "match": "regex",
+            "regex": "application\\/.*json"
+          }
         }
       },
       "response": {
