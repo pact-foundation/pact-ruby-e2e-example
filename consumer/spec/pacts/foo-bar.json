@@ -21,24 +21,7 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "company": "My big company",
-          "factories": [
-            {
-              "location": "Sydney",
-              "capacity": 5
-            }
-          ]
-        },
-        "matchingRules": {
-          "$.body.company": {
-            "match": "type"
-          },
-          "$.body.factories": {
-            "min": 1
-          },
-          "$.body.factories[*].*": {
-            "match": "type"
-          }
+          "name": "Jean-Marie de La Beaujardière"
         }
       }
     }
