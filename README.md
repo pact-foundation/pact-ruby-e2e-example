@@ -8,9 +8,10 @@ This code base is _not_ intended as an example of a best practice pact implement
 
 ## Usage
 
-### Clone the codebase
+### Fork and clone the codebase
 
-    git clone git@github.com:YOUR_USERNAME/pact-ruby-issue-recreator.git
+    # Fork the repository using the 'Fork' button on the repository home page, then:
+    git clone git@github.com:YOUR_USERNAME/pact-ruby-e2e-example.git
     cd pact-ruby-issue-recreator
 
 ### Set the gem versions you are using
