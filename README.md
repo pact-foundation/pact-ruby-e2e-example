@@ -1,4 +1,7 @@
 # Pact Ruby End to End Example
+
+[![Build Status](https://travis-ci.org/pact-foundation/pact-ruby-e2e-example.svg?branch=master)](https://travis-ci.org/pact-foundation/pact-ruby-e2e-example)
+
 Code base to use for demonstrating features or recreating issues in the ruby implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
 
 This code base is _not_ intended as an example of a best practice pact implementation. Its purpose is to create a running example with the simplest code possible. If you want to see an example of how you would use pact in a Ruby consumer or provider project, see the [example] dir in the pact repository.
