@@ -12,7 +12,7 @@ This code base is _not_ intended as an example of a best practice pact implement
 
     # Fork the repository using the 'Fork' button on the repository home page, then:
     git clone git@github.com:YOUR_USERNAME/pact-ruby-e2e-example.git
-    cd pact-ruby-issue-recreator
+    cd pact-ruby-e2e-example
 
 ### Set the gem versions you are using
 
