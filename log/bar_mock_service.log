@@ -1,0 +1,54 @@
+I, [2017-07-31T09:22:53.102014 #13682]  INFO -- : Cleared interactions before example "BarClient can retrieve a thing"
+I, [2017-07-31T09:22:53.105306 #13682]  INFO -- : Registered expected interaction GET /thing
+D, [2017-07-31T09:22:53.105401 #13682] DEBUG -- : {
+  "description": "a retrieve thing request",
+  "request": {
+    "method": "get",
+    "path": "/thing",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "score": {
+        "json_class": "Pact::SomethingLike",
+        "contents": 1.0
+      }
+    }
+  }
+}
+I, [2017-07-31T09:22:53.247457 #13682]  INFO -- : Received request GET /thing
+D, [2017-07-31T09:22:53.247580 #13682] DEBUG -- : {
+  "path": "/thing",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.12.2",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Connection": "close",
+    "Host": "localhost:4638",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2017-07-31T09:22:53.247710 #13682]  INFO -- : Found matching response for GET /thing
+D, [2017-07-31T09:22:53.247789 #13682] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "score": {
+      "json_class": "Pact::SomethingLike",
+      "contents": 1.0
+    }
+  }
+}
+I, [2017-07-31T09:22:53.252588 #13682]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2017-07-31T09:22:53.256424 #13682]  INFO -- : Writing pact with details {:consumer=>{:name=>"Foo"}, :provider=>{:name=>"Bar"}, :pactfile_write_mode=>"overwrite", :pact_dir=>"/Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts"}
+I, [2017-07-31T09:22:53.256500 #13682]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json
