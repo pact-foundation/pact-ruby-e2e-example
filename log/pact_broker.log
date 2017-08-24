@@ -1,0 +1,309 @@
+# Logfile created on 2017-05-26 08:22:46 +1000 by logger.rb/56815
+I, [2017-05-26T08:22:46.429347 #19760]  INFO -- : Migrating database
+I, [2017-05-26T08:22:46.433748 #19760]  INFO -- : (0.000154s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.433802 #19760]  INFO -- : (0.000017s) PRAGMA case_sensitive_like = 1
+I, [2017-05-26T08:22:46.433932 #19760]  INFO -- : (0.000077s) SELECT sqlite_version()
+I, [2017-05-26T08:22:46.435020 #19760]  INFO -- : (0.000944s) CREATE TABLE IF NOT EXISTS `schema_info` (`version` integer DEFAULT (0) NOT NULL)
+I, [2017-05-26T08:22:46.435318 #19760]  INFO -- : (0.000148s) SELECT * FROM `schema_info` LIMIT 1
+I, [2017-05-26T08:22:46.435679 #19760]  INFO -- : (0.000121s) SELECT 1 AS 'one' FROM `schema_info` LIMIT 1
+I, [2017-05-26T08:22:46.436703 #19760]  INFO -- : (0.000832s) INSERT INTO `schema_info` (`version`) VALUES (0)
+I, [2017-05-26T08:22:46.436929 #19760]  INFO -- : (0.000082s) SELECT count(*) AS 'count' FROM `schema_info` LIMIT 1
+I, [2017-05-26T08:22:46.437100 #19760]  INFO -- : (0.000074s) SELECT `version` FROM `schema_info` LIMIT 1
+I, [2017-05-26T08:22:46.439291 #19760]  INFO -- : Begin applying migration version 1, direction: up
+I, [2017-05-26T08:22:46.440412 #19760]  INFO -- : (0.000979s) CREATE TABLE `pacticipants` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `name` varchar(255) UNIQUE, `repository_url` varchar(255))
+I, [2017-05-26T08:22:46.441650 #19760]  INFO -- : (0.001044s) UPDATE `schema_info` SET `version` = 1
+I, [2017-05-26T08:22:46.441721 #19760]  INFO -- : Finished applying migration version 1, direction: up, took 0.002424 seconds
+I, [2017-05-26T08:22:46.441756 #19760]  INFO -- : Begin applying migration version 2, direction: up
+I, [2017-05-26T08:22:46.443116 #19760]  INFO -- : (0.001127s) CREATE TABLE `versions` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `number` varchar(255), `repository_ref` varchar(255), `pacticipant_id` integer NOT NULL REFERENCES `pacticipants`)
+I, [2017-05-26T08:22:46.443924 #19760]  INFO -- : (0.000677s) CREATE UNIQUE INDEX `versions_pacticipant_id_number_index` ON `versions` (`pacticipant_id`, `number`)
+I, [2017-05-26T08:22:46.444749 #19760]  INFO -- : (0.000722s) UPDATE `schema_info` SET `version` = 2
+I, [2017-05-26T08:22:46.444794 #19760]  INFO -- : Finished applying migration version 2, direction: up, took 0.003035 seconds
+I, [2017-05-26T08:22:46.444822 #19760]  INFO -- : Begin applying migration version 3, direction: up
+I, [2017-05-26T08:22:46.445884 #19760]  INFO -- : (0.000899s) CREATE TABLE `pacts` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `json_content` text, `version_id` integer NOT NULL REFERENCES `versions`, `provider_id` integer NOT NULL REFERENCES `pacticipants`)
+I, [2017-05-26T08:22:46.446901 #19760]  INFO -- : (0.000900s) CREATE UNIQUE INDEX `pacts_version_id_provider_id_index` ON `pacts` (`version_id`, `provider_id`)
+I, [2017-05-26T08:22:46.447823 #19760]  INFO -- : (0.000824s) UPDATE `schema_info` SET `version` = 3
+I, [2017-05-26T08:22:46.447870 #19760]  INFO -- : Finished applying migration version 3, direction: up, took 0.003051 seconds
+I, [2017-05-26T08:22:46.447892 #19760]  INFO -- : Begin applying migration version 4, direction: up
+I, [2017-05-26T08:22:46.448942 #19760]  INFO -- : (0.000859s) CREATE TABLE `tags` (`name` varchar(255) NOT NULL, `version_id` integer NOT NULL REFERENCES `versions`, CONSTRAINT `tags_pk` PRIMARY KEY (`version_id`, `name`))
+I, [2017-05-26T08:22:46.449897 #19760]  INFO -- : (0.000860s) UPDATE `schema_info` SET `version` = 4
+I, [2017-05-26T08:22:46.449967 #19760]  INFO -- : Finished applying migration version 4, direction: up, took 0.002060 seconds
+I, [2017-05-26T08:22:46.449995 #19760]  INFO -- : Begin applying migration version 5, direction: up
+I, [2017-05-26T08:22:46.450113 #19760]  INFO -- : (0.000023s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.450214 #19760]  INFO -- : (0.000028s) BEGIN
+I, [2017-05-26T08:22:46.450558 #19760]  INFO -- : (0.000258s) ALTER TABLE `versions` ADD COLUMN `order` integer
+I, [2017-05-26T08:22:46.451202 #19760]  INFO -- : (0.000594s) COMMIT
+I, [2017-05-26T08:22:46.451316 #19760]  INFO -- : (0.000023s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.451513 #19760]  INFO -- : (0.000084s) UPDATE `versions` SET `order` = `id`
+I, [2017-05-26T08:22:46.452321 #19760]  INFO -- : (0.000736s) UPDATE `schema_info` SET `version` = 5
+I, [2017-05-26T08:22:46.452362 #19760]  INFO -- : Finished applying migration version 5, direction: up, took 0.002364 seconds
+I, [2017-05-26T08:22:46.452382 #19760]  INFO -- : Begin applying migration version 6, direction: up
+I, [2017-05-26T08:22:46.452473 #19760]  INFO -- : (0.000025s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.452537 #19760]  INFO -- : (0.000017s) BEGIN
+I, [2017-05-26T08:22:46.452778 #19760]  INFO -- : (0.000130s) PRAGMA table_info('tags')
+I, [2017-05-26T08:22:46.452945 #19760]  INFO -- : (0.000059s) PRAGMA foreign_key_list('tags')
+I, [2017-05-26T08:22:46.453058 #19760]  INFO -- : (0.000048s) PRAGMA index_list('tags')
+I, [2017-05-26T08:22:46.453161 #19760]  INFO -- : (0.000045s) PRAGMA index_info('sqlite_autoindex_tags_1')
+I, [2017-05-26T08:22:46.453347 #19760]  INFO -- : (0.000021s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.453507 #19760] ERROR -- : SQLite3::SQLException: no such table: tags_backup0: SELECT NULL AS 'nil' FROM `tags_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.453716 #19760]  INFO -- : (0.000021s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.453854 #19760]  INFO -- : (0.000044s) PRAGMA index_list('tags')
+I, [2017-05-26T08:22:46.454123 #19760]  INFO -- : (0.000227s) ALTER TABLE `tags` RENAME TO `tags_backup0`
+I, [2017-05-26T08:22:46.454286 #19760]  INFO -- : (0.000108s) CREATE TABLE `tags`(`name` varchar(255) DEFAULT (NULL) NOT NULL, `version_id` integer DEFAULT (NULL) NOT NULL, PRIMARY KEY ('name', 'version_id'), FOREIGN KEY (`version_id`) REFERENCES `versions` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.454359 #19760]  INFO -- : (0.000037s) INSERT INTO `tags`(`name`, `version_id`) SELECT `name`, `version_id` FROM `tags_backup0`
+I, [2017-05-26T08:22:46.454731 #19760]  INFO -- : (0.000337s) DROP TABLE `tags_backup0`
+I, [2017-05-26T08:22:46.455565 #19760]  INFO -- : (0.000790s) COMMIT
+I, [2017-05-26T08:22:46.455755 #19760]  INFO -- : (0.000024s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.456609 #19760]  INFO -- : (0.000727s) UPDATE `schema_info` SET `version` = 6
+I, [2017-05-26T08:22:46.456647 #19760]  INFO -- : Finished applying migration version 6, direction: up, took 0.004261 seconds
+I, [2017-05-26T08:22:46.456665 #19760]  INFO -- : Begin applying migration version 7, direction: up
+I, [2017-05-26T08:22:46.456747 #19760]  INFO -- : (0.000018s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.456812 #19760]  INFO -- : (0.000022s) BEGIN
+I, [2017-05-26T08:22:46.456996 #19760]  INFO -- : (0.000116s) PRAGMA table_info('pacts')
+I, [2017-05-26T08:22:46.457140 #19760]  INFO -- : (0.000061s) PRAGMA foreign_key_list('pacts')
+I, [2017-05-26T08:22:46.457233 #19760]  INFO -- : (0.000037s) PRAGMA index_list('pacts')
+I, [2017-05-26T08:22:46.457433 #19760]  INFO -- : (0.000022s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.457540 #19760] ERROR -- : SQLite3::SQLException: no such table: pacts_backup0: SELECT NULL AS 'nil' FROM `pacts_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.457689 #19760]  INFO -- : (0.000017s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.457822 #19760]  INFO -- : (0.000040s) PRAGMA index_list('pacts')
+I, [2017-05-26T08:22:46.457925 #19760]  INFO -- : (0.000045s) PRAGMA index_info('pacts_version_id_provider_id_index')
+I, [2017-05-26T08:22:46.458222 #19760]  INFO -- : (0.000210s) ALTER TABLE `pacts` RENAME TO `pacts_backup0`
+I, [2017-05-26T08:22:46.458360 #19760]  INFO -- : (0.000101s) CREATE TABLE `pacts`(`id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY AUTOINCREMENT, `json_content` mediumtext DEFAULT (NULL) NULL, `version_id` integer DEFAULT (NULL) NOT NULL, `provider_id` integer DEFAULT (NULL) NOT NULL, FOREIGN KEY (`provider_id`) REFERENCES `pacticipants` ON DELETE NO ACTION ON UPDATE NO ACTION, FOREIGN KEY (`version_id`) REFERENCES `versions` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.458450 #19760]  INFO -- : (0.000050s) INSERT INTO `pacts`(`id`, `json_content`, `version_id`, `provider_id`) SELECT `id`, `json_content`, `version_id`, `provider_id` FROM `pacts_backup0`
+I, [2017-05-26T08:22:46.458723 #19760]  INFO -- : (0.000234s) DROP TABLE `pacts_backup0`
+I, [2017-05-26T08:22:46.458852 #19760]  INFO -- : (0.000095s) CREATE UNIQUE INDEX `pacts_version_id_provider_id_index` ON `pacts` (`version_id`, `provider_id`)
+I, [2017-05-26T08:22:46.460047 #19760]  INFO -- : (0.001149s) COMMIT
+I, [2017-05-26T08:22:46.460195 #19760]  INFO -- : (0.000037s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.461334 #19760]  INFO -- : (0.001018s) UPDATE `schema_info` SET `version` = 7
+I, [2017-05-26T08:22:46.461403 #19760]  INFO -- : Finished applying migration version 7, direction: up, took 0.004728 seconds
+I, [2017-05-26T08:22:46.461445 #19760]  INFO -- : Begin applying migration version 8, direction: up
+I, [2017-05-26T08:22:46.465783 #19760]  INFO -- : (0.000952s) CREATE VIEW `all_pacts` AS SELECT `pacts`.`id`, `c`.`id` AS 'consumer_id', `c`.`name` AS 'consumer_name', `cv`.`number` AS 'consumer_version_number', `cv`.`order` AS 'consumer_version_order', `p`.`id` AS 'provider_id', `p`.`name` AS 'provider_name', `pacts`.`json_content` FROM `pacts` INNER JOIN `versions` AS 'cv' ON (`cv`.`id` = `pacts`.`version_id`) INNER JOIN `pacticipants` AS 'c' ON (`c`.`id` = `cv`.`pacticipant_id`) INNER JOIN `pacticipants` AS 'p' ON (`p`.`id` = `pacts`.`provider_id`)
+I, [2017-05-26T08:22:46.466720 #19760]  INFO -- : (0.000807s) CREATE VIEW `latest_pact_consumer_version_orders` AS select provider_id, consumer_id, max(consumer_version_order) as latest_consumer_version_order
+      from all_pacts
+      group by provider_id, consumer_id
+I, [2017-05-26T08:22:46.467664 #19760]  INFO -- : (0.000859s) CREATE VIEW `latest_pacts` AS select ap.*
+      from all_pacts ap
+      inner join latest_pact_consumer_version_orders lp
+      on ap.consumer_id = lp.consumer_id
+           and ap.provider_id = lp.provider_id
+           and ap.consumer_version_order = latest_consumer_version_order
+I, [2017-05-26T08:22:46.468427 #19760]  INFO -- : (0.000664s) UPDATE `schema_info` SET `version` = 8
+I, [2017-05-26T08:22:46.468466 #19760]  INFO -- : Finished applying migration version 8, direction: up, took 0.007019 seconds
+I, [2017-05-26T08:22:46.468487 #19760]  INFO -- : Begin applying migration version 9, direction: up
+I, [2017-05-26T08:22:46.468608 #19760]  INFO -- : (0.000021s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.468678 #19760]  INFO -- : (0.000019s) BEGIN
+I, [2017-05-26T08:22:46.469004 #19760]  INFO -- : (0.000243s) ALTER TABLE `pacts` ADD COLUMN `created_at` timestamp
+I, [2017-05-26T08:22:46.469617 #19760]  INFO -- : (0.000569s) COMMIT
+I, [2017-05-26T08:22:46.469691 #19760]  INFO -- : (0.000018s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.469771 #19760]  INFO -- : (0.000016s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.469828 #19760]  INFO -- : (0.000015s) BEGIN
+I, [2017-05-26T08:22:46.470183 #19760]  INFO -- : (0.000252s) ALTER TABLE `pacts` ADD COLUMN `updated_at` timestamp
+I, [2017-05-26T08:22:46.470696 #19760]  INFO -- : (0.000474s) COMMIT
+I, [2017-05-26T08:22:46.470762 #19760]  INFO -- : (0.000017s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.470834 #19760]  INFO -- : (0.000014s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.470886 #19760]  INFO -- : (0.000014s) BEGIN
+I, [2017-05-26T08:22:46.471175 #19760]  INFO -- : (0.000230s) ALTER TABLE `tags` ADD COLUMN `created_at` timestamp
+I, [2017-05-26T08:22:46.471784 #19760]  INFO -- : (0.000566s) COMMIT
+I, [2017-05-26T08:22:46.471877 #19760]  INFO -- : (0.000024s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.471979 #19760]  INFO -- : (0.000017s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.472084 #19760]  INFO -- : (0.000017s) BEGIN
+I, [2017-05-26T08:22:46.472370 #19760]  INFO -- : (0.000222s) ALTER TABLE `tags` ADD COLUMN `updated_at` timestamp
+I, [2017-05-26T08:22:46.472921 #19760]  INFO -- : (0.000510s) COMMIT
+I, [2017-05-26T08:22:46.472993 #19760]  INFO -- : (0.000018s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.473077 #19760]  INFO -- : (0.000015s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.473132 #19760]  INFO -- : (0.000015s) BEGIN
+I, [2017-05-26T08:22:46.473403 #19760]  INFO -- : (0.000210s) ALTER TABLE `versions` ADD COLUMN `created_at` timestamp
+I, [2017-05-26T08:22:46.473916 #19760]  INFO -- : (0.000466s) COMMIT
+I, [2017-05-26T08:22:46.474005 #19760]  INFO -- : (0.000016s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.474073 #19760]  INFO -- : (0.000015s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.474121 #19760]  INFO -- : (0.000014s) BEGIN
+I, [2017-05-26T08:22:46.474366 #19760]  INFO -- : (0.000190s) ALTER TABLE `versions` ADD COLUMN `updated_at` timestamp
+I, [2017-05-26T08:22:46.474884 #19760]  INFO -- : (0.000483s) COMMIT
+I, [2017-05-26T08:22:46.474943 #19760]  INFO -- : (0.000014s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.475007 #19760]  INFO -- : (0.000013s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.475054 #19760]  INFO -- : (0.000014s) BEGIN
+I, [2017-05-26T08:22:46.475324 #19760]  INFO -- : (0.000183s) ALTER TABLE `pacticipants` ADD COLUMN `created_at` timestamp
+I, [2017-05-26T08:22:46.475822 #19760]  INFO -- : (0.000463s) COMMIT
+I, [2017-05-26T08:22:46.475878 #19760]  INFO -- : (0.000014s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.475937 #19760]  INFO -- : (0.000012s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.475981 #19760]  INFO -- : (0.000012s) BEGIN
+I, [2017-05-26T08:22:46.476198 #19760]  INFO -- : (0.000166s) ALTER TABLE `pacticipants` ADD COLUMN `updated_at` timestamp
+I, [2017-05-26T08:22:46.476757 #19760]  INFO -- : (0.000526s) COMMIT
+I, [2017-05-26T08:22:46.476833 #19760]  INFO -- : (0.000018s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.477543 #19760]  INFO -- : (0.000606s) UPDATE `schema_info` SET `version` = 9
+I, [2017-05-26T08:22:46.477572 #19760]  INFO -- : Finished applying migration version 9, direction: up, took 0.009083 seconds
+I, [2017-05-26T08:22:46.477587 #19760]  INFO -- : Begin applying migration version 10, direction: up
+I, [2017-05-26T08:22:46.477846 #19760]  INFO -- : (0.000065s) UPDATE `pacts` SET `created_at` = '2017-05-25 22:22:46.477624', `updated_at` = '2017-05-25 22:22:46.477640'
+I, [2017-05-26T08:22:46.477987 #19760]  INFO -- : (0.000054s) UPDATE `versions` SET `created_at` = '2017-05-25 22:22:46.477878', `updated_at` = '2017-05-25 22:22:46.477879'
+I, [2017-05-26T08:22:46.478118 #19760]  INFO -- : (0.000052s) UPDATE `pacticipants` SET `created_at` = '2017-05-25 22:22:46.478015', `updated_at` = '2017-05-25 22:22:46.478016'
+I, [2017-05-26T08:22:46.478291 #19760]  INFO -- : (0.000053s) UPDATE `tags` SET `created_at` = '2017-05-25 22:22:46.478181', `updated_at` = '2017-05-25 22:22:46.478183'
+I, [2017-05-26T08:22:46.479022 #19760]  INFO -- : (0.000679s) UPDATE `schema_info` SET `version` = 10
+I, [2017-05-26T08:22:46.479054 #19760]  INFO -- : Finished applying migration version 10, direction: up, took 0.001464 seconds
+I, [2017-05-26T08:22:46.479069 #19760]  INFO -- : Begin applying migration version 11, direction: up
+I, [2017-05-26T08:22:46.479137 #19760]  INFO -- : (0.000016s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.479184 #19760]  INFO -- : (0.000013s) BEGIN
+I, [2017-05-26T08:22:46.479393 #19760]  INFO -- : (0.000143s) PRAGMA table_info('tags')
+I, [2017-05-26T08:22:46.479494 #19760]  INFO -- : (0.000043s) PRAGMA foreign_key_list('tags')
+I, [2017-05-26T08:22:46.479574 #19760]  INFO -- : (0.000034s) PRAGMA index_list('tags')
+I, [2017-05-26T08:22:46.479669 #19760]  INFO -- : (0.000053s) PRAGMA index_info('sqlite_autoindex_tags_1')
+I, [2017-05-26T08:22:46.479850 #19760]  INFO -- : (0.000014s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.479950 #19760] ERROR -- : SQLite3::SQLException: no such table: tags_backup0: SELECT NULL AS 'nil' FROM `tags_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.480123 #19760]  INFO -- : (0.000016s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.480231 #19760]  INFO -- : (0.000031s) PRAGMA index_list('tags')
+I, [2017-05-26T08:22:46.480456 #19760]  INFO -- : (0.000190s) ALTER TABLE `tags` RENAME TO `tags_backup0`
+I, [2017-05-26T08:22:46.480597 #19760]  INFO -- : (0.000102s) CREATE TABLE `tags`(`name` varchar(255) DEFAULT (NULL) NOT NULL, `version_id` integer DEFAULT (NULL) NOT NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NULL, PRIMARY KEY ('name', 'version_id'), FOREIGN KEY (`version_id`) REFERENCES `versions` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.480657 #19760]  INFO -- : (0.000031s) INSERT INTO `tags`(`name`, `version_id`, `created_at`, `updated_at`) SELECT `name`, `version_id`, `created_at`, `updated_at` FROM `tags_backup0`
+I, [2017-05-26T08:22:46.480946 #19760]  INFO -- : (0.000261s) DROP TABLE `tags_backup0`
+I, [2017-05-26T08:22:46.481098 #19760]  INFO -- : (0.000070s) PRAGMA table_info('tags')
+I, [2017-05-26T08:22:46.481190 #19760]  INFO -- : (0.000038s) PRAGMA foreign_key_list('tags')
+I, [2017-05-26T08:22:46.481264 #19760]  INFO -- : (0.000029s) PRAGMA index_list('tags')
+I, [2017-05-26T08:22:46.481351 #19760]  INFO -- : (0.000029s) PRAGMA index_info('sqlite_autoindex_tags_1')
+I, [2017-05-26T08:22:46.481483 #19760]  INFO -- : (0.000014s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.481590 #19760] ERROR -- : SQLite3::SQLException: no such table: tags_backup0: SELECT NULL AS 'nil' FROM `tags_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.481724 #19760]  INFO -- : (0.000036s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.481963 #19760]  INFO -- : (0.000164s) PRAGMA index_list('tags')
+I, [2017-05-26T08:22:46.482178 #19760]  INFO -- : (0.000151s) ALTER TABLE `tags` RENAME TO `tags_backup0`
+I, [2017-05-26T08:22:46.482316 #19760]  INFO -- : (0.000104s) CREATE TABLE `tags`(`name` varchar(255) DEFAULT (NULL) NOT NULL, `version_id` integer DEFAULT (NULL) NOT NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NOT NULL, PRIMARY KEY ('name', 'version_id'), FOREIGN KEY (`version_id`) REFERENCES `versions` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.482386 #19760]  INFO -- : (0.000040s) INSERT INTO `tags`(`name`, `version_id`, `created_at`, `updated_at`) SELECT `name`, `version_id`, `created_at`, `updated_at` FROM `tags_backup0`
+I, [2017-05-26T08:22:46.482481 #19760]  INFO -- : (0.000067s) DROP TABLE `tags_backup0`
+I, [2017-05-26T08:22:46.483387 #19760]  INFO -- : (0.000871s) COMMIT
+I, [2017-05-26T08:22:46.483477 #19760]  INFO -- : (0.000024s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.483617 #19760]  INFO -- : (0.000026s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.483718 #19760]  INFO -- : (0.000027s) BEGIN
+I, [2017-05-26T08:22:46.484083 #19760]  INFO -- : (0.000210s) PRAGMA table_info('pacticipants')
+I, [2017-05-26T08:22:46.484236 #19760]  INFO -- : (0.000038s) PRAGMA foreign_key_list('pacticipants')
+I, [2017-05-26T08:22:46.484399 #19760]  INFO -- : (0.000071s) PRAGMA index_list('pacticipants')
+I, [2017-05-26T08:22:46.484624 #19760]  INFO -- : (0.000057s) PRAGMA index_info('sqlite_autoindex_pacticipants_1')
+I, [2017-05-26T08:22:46.484902 #19760]  INFO -- : (0.000029s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.485094 #19760] ERROR -- : SQLite3::SQLException: no such table: pacticipants_backup0: SELECT NULL AS 'nil' FROM `pacticipants_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.485260 #19760]  INFO -- : (0.000021s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.485421 #19760]  INFO -- : (0.000052s) PRAGMA index_list('pacticipants')
+I, [2017-05-26T08:22:46.485779 #19760]  INFO -- : (0.000269s) ALTER TABLE `pacticipants` RENAME TO `pacticipants_backup0`
+I, [2017-05-26T08:22:46.485973 #19760]  INFO -- : (0.000145s) CREATE TABLE `pacticipants`(`id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY AUTOINCREMENT, `name` varchar(255) DEFAULT (NULL) NULL UNIQUE, `repository_url` varchar(255) DEFAULT (NULL) NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NULL)
+I, [2017-05-26T08:22:46.486087 #19760]  INFO -- : (0.000067s) INSERT INTO `pacticipants`(`id`, `name`, `repository_url`, `created_at`, `updated_at`) SELECT `id`, `name`, `repository_url`, `created_at`, `updated_at` FROM `pacticipants_backup0`
+I, [2017-05-26T08:22:46.486476 #19760]  INFO -- : (0.000333s) DROP TABLE `pacticipants_backup0`
+I, [2017-05-26T08:22:46.486717 #19760]  INFO -- : (0.000125s) PRAGMA table_info('pacticipants')
+I, [2017-05-26T08:22:46.486851 #19760]  INFO -- : (0.000027s) PRAGMA foreign_key_list('pacticipants')
+I, [2017-05-26T08:22:46.486965 #19760]  INFO -- : (0.000047s) PRAGMA index_list('pacticipants')
+I, [2017-05-26T08:22:46.487101 #19760]  INFO -- : (0.000072s) PRAGMA index_info('sqlite_autoindex_pacticipants_1')
+I, [2017-05-26T08:22:46.487298 #19760]  INFO -- : (0.000020s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.487450 #19760] ERROR -- : SQLite3::SQLException: no such table: pacticipants_backup0: SELECT NULL AS 'nil' FROM `pacticipants_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.487657 #19760]  INFO -- : (0.000053s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.488020 #19760]  INFO -- : (0.000244s) PRAGMA index_list('pacticipants')
+I, [2017-05-26T08:22:46.488289 #19760]  INFO -- : (0.000215s) ALTER TABLE `pacticipants` RENAME TO `pacticipants_backup0`
+I, [2017-05-26T08:22:46.488490 #19760]  INFO -- : (0.000148s) CREATE TABLE `pacticipants`(`id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY AUTOINCREMENT, `name` varchar(255) DEFAULT (NULL) NULL UNIQUE, `repository_url` varchar(255) DEFAULT (NULL) NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NOT NULL)
+I, [2017-05-26T08:22:46.488603 #19760]  INFO -- : (0.000060s) INSERT INTO `pacticipants`(`id`, `name`, `repository_url`, `created_at`, `updated_at`) SELECT `id`, `name`, `repository_url`, `created_at`, `updated_at` FROM `pacticipants_backup0`
+I, [2017-05-26T08:22:46.488745 #19760]  INFO -- : (0.000104s) DROP TABLE `pacticipants_backup0`
+I, [2017-05-26T08:22:46.489885 #19760]  INFO -- : (0.001098s) COMMIT
+I, [2017-05-26T08:22:46.489984 #19760]  INFO -- : (0.000027s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.490078 #19760]  INFO -- : (0.000018s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.490146 #19760]  INFO -- : (0.000019s) BEGIN
+I, [2017-05-26T08:22:46.490412 #19760]  INFO -- : (0.000178s) PRAGMA table_info('versions')
+I, [2017-05-26T08:22:46.490540 #19760]  INFO -- : (0.000054s) PRAGMA foreign_key_list('versions')
+I, [2017-05-26T08:22:46.490639 #19760]  INFO -- : (0.000037s) PRAGMA index_list('versions')
+I, [2017-05-26T08:22:46.490871 #19760]  INFO -- : (0.000019s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.490991 #19760] ERROR -- : SQLite3::SQLException: no such table: versions_backup0: SELECT NULL AS 'nil' FROM `versions_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.491178 #19760]  INFO -- : (0.000049s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.491332 #19760]  INFO -- : (0.000046s) PRAGMA index_list('versions')
+I, [2017-05-26T08:22:46.491429 #19760]  INFO -- : (0.000039s) PRAGMA index_info('versions_pacticipant_id_number_index')
+I, [2017-05-26T08:22:46.491782 #19760]  INFO -- : (0.000274s) ALTER TABLE `versions` RENAME TO `versions_backup0`
+I, [2017-05-26T08:22:46.491977 #19760]  INFO -- : (0.000150s) CREATE TABLE `versions`(`id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY AUTOINCREMENT, `number` varchar(255) DEFAULT (NULL) NULL, `repository_ref` varchar(255) DEFAULT (NULL) NULL, `pacticipant_id` integer DEFAULT (NULL) NOT NULL, `order` integer DEFAULT (NULL) NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NULL, FOREIGN KEY (`pacticipant_id`) REFERENCES `pacticipants` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.492080 #19760]  INFO -- : (0.000061s) INSERT INTO `versions`(`id`, `number`, `repository_ref`, `pacticipant_id`, `order`, `created_at`, `updated_at`) SELECT `id`, `number`, `repository_ref`, `pacticipant_id`, `order`, `created_at`, `updated_at` FROM `versions_backup0`
+I, [2017-05-26T08:22:46.492417 #19760]  INFO -- : (0.000298s) DROP TABLE `versions_backup0`
+I, [2017-05-26T08:22:46.492571 #19760]  INFO -- : (0.000114s) CREATE UNIQUE INDEX `versions_pacticipant_id_number_index` ON `versions` (`pacticipant_id`, `number`)
+I, [2017-05-26T08:22:46.492774 #19760]  INFO -- : (0.000118s) PRAGMA table_info('versions')
+I, [2017-05-26T08:22:46.492906 #19760]  INFO -- : (0.000062s) PRAGMA foreign_key_list('versions')
+I, [2017-05-26T08:22:46.493023 #19760]  INFO -- : (0.000034s) PRAGMA index_list('versions')
+I, [2017-05-26T08:22:46.493230 #19760]  INFO -- : (0.000016s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.493324 #19760] ERROR -- : SQLite3::SQLException: no such table: versions_backup0: SELECT NULL AS 'nil' FROM `versions_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.493490 #19760]  INFO -- : (0.000044s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.493822 #19760]  INFO -- : (0.000205s) PRAGMA index_list('versions')
+I, [2017-05-26T08:22:46.493918 #19760]  INFO -- : (0.000037s) PRAGMA index_info('versions_pacticipant_id_number_index')
+I, [2017-05-26T08:22:46.494152 #19760]  INFO -- : (0.000163s) ALTER TABLE `versions` RENAME TO `versions_backup0`
+I, [2017-05-26T08:22:46.494307 #19760]  INFO -- : (0.000115s) CREATE TABLE `versions`(`id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY AUTOINCREMENT, `number` varchar(255) DEFAULT (NULL) NULL, `repository_ref` varchar(255) DEFAULT (NULL) NULL, `pacticipant_id` integer DEFAULT (NULL) NOT NULL, `order` integer DEFAULT (NULL) NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NOT NULL, FOREIGN KEY (`pacticipant_id`) REFERENCES `pacticipants` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.494397 #19760]  INFO -- : (0.000053s) INSERT INTO `versions`(`id`, `number`, `repository_ref`, `pacticipant_id`, `order`, `created_at`, `updated_at`) SELECT `id`, `number`, `repository_ref`, `pacticipant_id`, `order`, `created_at`, `updated_at` FROM `versions_backup0`
+I, [2017-05-26T08:22:46.494554 #19760]  INFO -- : (0.000099s) DROP TABLE `versions_backup0`
+I, [2017-05-26T08:22:46.494684 #19760]  INFO -- : (0.000096s) CREATE UNIQUE INDEX `versions_pacticipant_id_number_index` ON `versions` (`pacticipant_id`, `number`)
+I, [2017-05-26T08:22:46.495612 #19760]  INFO -- : (0.000888s) COMMIT
+I, [2017-05-26T08:22:46.495701 #19760]  INFO -- : (0.000019s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.495787 #19760]  INFO -- : (0.000024s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.495841 #19760]  INFO -- : (0.000014s) BEGIN
+I, [2017-05-26T08:22:46.496036 #19760]  INFO -- : (0.000129s) PRAGMA table_info('pacts')
+I, [2017-05-26T08:22:46.496173 #19760]  INFO -- : (0.000057s) PRAGMA foreign_key_list('pacts')
+I, [2017-05-26T08:22:46.496258 #19760]  INFO -- : (0.000031s) PRAGMA index_list('pacts')
+I, [2017-05-26T08:22:46.496470 #19760]  INFO -- : (0.000016s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.496569 #19760] ERROR -- : SQLite3::SQLException: no such table: pacts_backup0: SELECT NULL AS 'nil' FROM `pacts_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.496721 #19760]  INFO -- : (0.000016s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.496845 #19760]  INFO -- : (0.000038s) PRAGMA index_list('pacts')
+I, [2017-05-26T08:22:46.496958 #19760]  INFO -- : (0.000064s) PRAGMA index_info('pacts_version_id_provider_id_index')
+I, [2017-05-26T08:22:46.497290 #19760]  INFO -- : (0.000264s) ALTER TABLE `pacts` RENAME TO `pacts_backup0`
+I, [2017-05-26T08:22:46.497425 #19760]  INFO -- : (0.000101s) CREATE TABLE `pacts`(`id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY AUTOINCREMENT, `json_content` mediumtext DEFAULT (NULL) NULL, `version_id` integer DEFAULT (NULL) NOT NULL, `provider_id` integer DEFAULT (NULL) NOT NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NULL, FOREIGN KEY (`version_id`) REFERENCES `versions` ON DELETE NO ACTION ON UPDATE NO ACTION, FOREIGN KEY (`provider_id`) REFERENCES `pacticipants` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.497686 #19760]  INFO -- : (0.000227s) INSERT INTO `pacts`(`id`, `json_content`, `version_id`, `provider_id`, `created_at`, `updated_at`) SELECT `id`, `json_content`, `version_id`, `provider_id`, `created_at`, `updated_at` FROM `pacts_backup0`
+I, [2017-05-26T08:22:46.497819 #19760]  INFO -- : (0.000096s) DROP TABLE `pacts_backup0`
+I, [2017-05-26T08:22:46.497946 #19760]  INFO -- : (0.000098s) CREATE UNIQUE INDEX `pacts_version_id_provider_id_index` ON `pacts` (`version_id`, `provider_id`)
+I, [2017-05-26T08:22:46.498125 #19760]  INFO -- : (0.000115s) PRAGMA table_info('pacts')
+I, [2017-05-26T08:22:46.498230 #19760]  INFO -- : (0.000047s) PRAGMA foreign_key_list('pacts')
+I, [2017-05-26T08:22:46.498310 #19760]  INFO -- : (0.000033s) PRAGMA index_list('pacts')
+I, [2017-05-26T08:22:46.498540 #19760]  INFO -- : (0.000015s) SAVEPOINT autopoint_1
+E, [2017-05-26T08:22:46.498636 #19760] ERROR -- : SQLite3::SQLException: no such table: pacts_backup0: SELECT NULL AS 'nil' FROM `pacts_backup0` LIMIT 1
+I, [2017-05-26T08:22:46.498798 #19760]  INFO -- : (0.000048s) ROLLBACK TO SAVEPOINT autopoint_1
+I, [2017-05-26T08:22:46.499086 #19760]  INFO -- : (0.000181s) PRAGMA index_list('pacts')
+I, [2017-05-26T08:22:46.499169 #19760]  INFO -- : (0.000032s) PRAGMA index_info('pacts_version_id_provider_id_index')
+I, [2017-05-26T08:22:46.499394 #19760]  INFO -- : (0.000162s) ALTER TABLE `pacts` RENAME TO `pacts_backup0`
+I, [2017-05-26T08:22:46.499523 #19760]  INFO -- : (0.000095s) CREATE TABLE `pacts`(`id` integer DEFAULT (NULL) NOT NULL PRIMARY KEY AUTOINCREMENT, `json_content` mediumtext DEFAULT (NULL) NULL, `version_id` integer DEFAULT (NULL) NOT NULL, `provider_id` integer DEFAULT (NULL) NOT NULL, `created_at` timestamp DEFAULT (NULL) NOT NULL, `updated_at` timestamp DEFAULT (NULL) NOT NULL, FOREIGN KEY (`provider_id`) REFERENCES `pacticipants` ON DELETE NO ACTION ON UPDATE NO ACTION, FOREIGN KEY (`version_id`) REFERENCES `versions` ON DELETE NO ACTION ON UPDATE NO ACTION)
+I, [2017-05-26T08:22:46.499601 #19760]  INFO -- : (0.000047s) INSERT INTO `pacts`(`id`, `json_content`, `version_id`, `provider_id`, `created_at`, `updated_at`) SELECT `id`, `json_content`, `version_id`, `provider_id`, `created_at`, `updated_at` FROM `pacts_backup0`
+I, [2017-05-26T08:22:46.499716 #19760]  INFO -- : (0.000087s) DROP TABLE `pacts_backup0`
+I, [2017-05-26T08:22:46.499837 #19760]  INFO -- : (0.000092s) CREATE UNIQUE INDEX `pacts_version_id_provider_id_index` ON `pacts` (`version_id`, `provider_id`)
+I, [2017-05-26T08:22:46.500812 #19760]  INFO -- : (0.000913s) COMMIT
+I, [2017-05-26T08:22:46.500889 #19760]  INFO -- : (0.000019s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.501593 #19760]  INFO -- : (0.000621s) UPDATE `schema_info` SET `version` = 11
+I, [2017-05-26T08:22:46.501626 #19760]  INFO -- : Finished applying migration version 11, direction: up, took 0.022553 seconds
+I, [2017-05-26T08:22:46.501643 #19760]  INFO -- : Begin applying migration version 12, direction: up
+I, [2017-05-26T08:22:46.502559 #19760]  INFO -- : (0.000702s) CREATE TABLE `webhooks` (`id` integer NOT NULL PRIMARY KEY AUTOINCREMENT, `uuid` varchar(255) NOT NULL CONSTRAINT `uq_webhook_uuid` UNIQUE, `method` varchar(255) NOT NULL, `url` varchar(255) NOT NULL, `body` varchar(255), `is_json_request_body` Boolean, `consumer_id` integer NOT NULL CONSTRAINT `fk_webhooks_consumer` REFERENCES `pacticipants`, `provider_id` integer NOT NULL CONSTRAINT `fk_webhooks_provider` REFERENCES `pacticipants`)
+I, [2017-05-26T08:22:46.503453 #19760]  INFO -- : (0.000738s) CREATE TABLE `webhook_headers` (`name` varchar(255) NOT NULL, `value` varchar(255), `webhook_id` integer NOT NULL CONSTRAINT `fk_webhookheaders_webhooks` REFERENCES `webhooks`, CONSTRAINT `webhooks_headers_pk` PRIMARY KEY (`webhook_id`, `name`))
+I, [2017-05-26T08:22:46.504142 #19760]  INFO -- : (0.000615s) UPDATE `schema_info` SET `version` = 12
+I, [2017-05-26T08:22:46.504176 #19760]  INFO -- : Finished applying migration version 12, direction: up, took 0.002530 seconds
+I, [2017-05-26T08:22:46.504192 #19760]  INFO -- : Begin applying migration version 13, direction: up
+I, [2017-05-26T08:22:46.504284 #19760]  INFO -- : (0.000017s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.504340 #19760]  INFO -- : (0.000016s) BEGIN
+I, [2017-05-26T08:22:46.504622 #19760]  INFO -- : (0.000213s) ALTER TABLE `webhooks` ADD COLUMN `created_at` timestamp
+I, [2017-05-26T08:22:46.505198 #19760]  INFO -- : (0.000538s) COMMIT
+I, [2017-05-26T08:22:46.505286 #19760]  INFO -- : (0.000025s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.505371 #19760]  INFO -- : (0.000016s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.505533 #19760]  INFO -- : (0.000062s) BEGIN
+I, [2017-05-26T08:22:46.505874 #19760]  INFO -- : (0.000222s) ALTER TABLE `webhooks` ADD COLUMN `updated_at` timestamp
+I, [2017-05-26T08:22:46.506362 #19760]  INFO -- : (0.000449s) COMMIT
+I, [2017-05-26T08:22:46.506429 #19760]  INFO -- : (0.000017s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.506499 #19760]  INFO -- : (0.000013s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.506548 #19760]  INFO -- : (0.000013s) BEGIN
+I, [2017-05-26T08:22:46.506817 #19760]  INFO -- : (0.000209s) ALTER TABLE `webhooks` ADD COLUMN `username` varchar(255)
+I, [2017-05-26T08:22:46.507323 #19760]  INFO -- : (0.000469s) COMMIT
+I, [2017-05-26T08:22:46.507389 #19760]  INFO -- : (0.000017s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.507475 #19760]  INFO -- : (0.000030s) PRAGMA foreign_keys = 0
+I, [2017-05-26T08:22:46.507525 #19760]  INFO -- : (0.000013s) BEGIN
+I, [2017-05-26T08:22:46.507792 #19760]  INFO -- : (0.000208s) ALTER TABLE `webhooks` ADD COLUMN `password` varchar(255)
+I, [2017-05-26T08:22:46.508366 #19760]  INFO -- : (0.000538s) COMMIT
+I, [2017-05-26T08:22:46.508432 #19760]  INFO -- : (0.000016s) PRAGMA foreign_keys = 1
+I, [2017-05-26T08:22:46.509184 #19760]  INFO -- : (0.000688s) UPDATE `schema_info` SET `version` = 13
+I, [2017-05-26T08:22:46.509216 #19760]  INFO -- : Finished applying migration version 13, direction: up, took 0.005021 seconds
+I, [2017-05-26T08:22:46.509232 #19760]  INFO -- : Begin applying migration version 14, direction: up
+I, [2017-05-26T08:22:46.510037 #19760]  INFO -- : (0.000642s) DROP VIEW `all_pacts`
+I, [2017-05-26T08:22:46.535062 #19760]  INFO -- : (0.001143s) CREATE VIEW `all_pacts` AS SELECT `pacts`.`id`, `c`.`id` AS 'consumer_id', `c`.`name` AS 'consumer_name', `cv`.`number` AS 'consumer_version_number', `cv`.`order` AS 'consumer_version_order', `p`.`id` AS 'provider_id', `p`.`name` AS 'provider_name', `pacts`.`json_content`, `pacts`.`created_at`, `pacts`.`updated_at` FROM `pacts` INNER JOIN `versions` AS 'cv' ON (`cv`.`id` = `pacts`.`version_id`) INNER JOIN `pacticipants` AS 'c' ON (`c`.`id` = `cv`.`pacticipant_id`) INNER JOIN `pacticipants` AS 'p' ON (`p`.`id` = `pacts`.`provider_id`)
+I, [2017-05-26T08:22:46.535781 #19760]  INFO -- : (0.000624s) DROP VIEW `latest_pact_consumer_version_orders`
+I, [2017-05-26T08:22:46.536541 #19760]  INFO -- : (0.000683s) CREATE VIEW `latest_pact_consumer_version_orders` AS select provider_id, consumer_id, max(consumer_version_order) as latest_consumer_version_order
+      from all_pacts
+      group by provider_id, consumer_id
+I, [2017-05-26T08:22:46.537076 #19760]  INFO -- : (0.000466s) DROP VIEW `latest_pacts`
+I, [2017-05-26T08:22:46.537758 #19760]  INFO -- : (0.000623s) CREATE VIEW `latest_pacts` AS select ap.*
+      from all_pacts ap
+      inner join latest_pact_consumer_version_orders lp
+      on ap.consumer_id = lp.consumer_id
+           and ap.provider_id = lp.provider_id
+           and ap.consumer_version_order = latest_consumer_version_order
+I, [2017-05-26T08:22:46.538286 #19760]  INFO -- : (0.000438s) UPDATE `schema_info` SET `version` = 14
+I, [2017-05-26T08:22:46.538327 #19760]  INFO -- : Finished applying migration version 14, direction: up, took 0.029088 seconds
+I, [2017-05-26T08:22:46.538433 #19760]  INFO -- : Mounting HAL browser
+I, [2017-05-26T08:22:46.538480 #19760]  INFO -- : Mounting UI
+I, [2017-05-26T08:22:46.782017 #19760]  INFO -- : (0.000180s) PRAGMA table_info('pacticipants')
+I, [2017-05-26T08:22:46.783647 #19760]  INFO -- : (0.000108s) PRAGMA table_info('tags')
+I, [2017-05-26T08:22:46.823123 #19760]  INFO -- : (0.000185s) PRAGMA table_info('versions')
+I, [2017-05-26T08:22:46.825948 #19760]  INFO -- : (0.000148s) PRAGMA table_info('pacts')
