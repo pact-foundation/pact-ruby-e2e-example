@@ -21,18 +21,44 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "company": "My big company",
           "factories": [
             {
-              "location": "Sydney",
-              "capacity": 5
+              "location": "Sydney"
             }
           ]
         },
         "matchingRules": {
-          "$.body.company": {
-            "match": "type"
+          "$.body.factories": {
+            "min": 1
           },
+          "$.body.factories[*].*": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a retrieve another thing request",
+      "request": {
+        "method": "get",
+        "path": "/thing",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "factories": [
+            {
+              "location": "Melbourne"
+            }
+          ]
+        },
+        "matchingRules": {
           "$.body.factories": {
             "min": 1
           },

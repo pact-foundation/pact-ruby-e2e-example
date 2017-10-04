@@ -1,0 +1,56 @@
+I, [2017-10-04T15:41:25.097006 #28892]  INFO -- : Cleared interactions for example "BarClient can retrieve a thing"
+I, [2017-10-04T15:41:25.159922 #28892]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2017-10-04T15:41:25.165406 #28892]  INFO -- : Cleared interactions for example "BarClient can retrieve a thing"
+I, [2017-10-04T15:41:25.167900 #28892]  INFO -- : Registered expected interaction GET /thing
+D, [2017-10-04T15:41:25.168188 #28892] DEBUG -- : {
+  "description": "a retrieve another thing request",
+  "request": {
+    "method": "get",
+    "path": "/thing",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "factories": {
+        "json_class": "Pact::ArrayLike",
+        "contents": {
+          "location": "Melbourne"
+        },
+        "min": 1
+      }
+    }
+  }
+}
+I, [2017-10-04T15:41:25.171349 #28892]  INFO -- : Received request GET /thing
+D, [2017-10-04T15:41:25.171686 #28892] DEBUG -- : {
+  "path": "/thing",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.13.1",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Connection": "close",
+    "Host": "localhost:4639",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2017-10-04T15:41:25.171989 #28892]  INFO -- : Found matching response for GET /thing
+D, [2017-10-04T15:41:25.172261 #28892] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "factories": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "location": "Melbourne"
+      },
+      "min": I, [2017-10-04I, [2017-10-04T15:41:25.177435 #28892]  INFO -- : Verifying - interactions matched for example "BarClient can retrI, [2017-10-04I, [2017-10-04T15:41:25.186982 #28892]  INFO -- : Merging interactions into pact for Bar at /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json
