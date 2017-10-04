@@ -20,19 +20,14 @@ This code base is _not_ intended as an example of a best practice pact implement
 
 * Run `bundle update`
 
-### Set up consumer expectations and generate the pact
+### Set up consumer and provider
 
-* Modify the code in `consumer/spec/bar_spec.rb` to recreate your consumer expectations.
-
-* Run `bundle exec rake spec` to run the spec, and generate the pact file.
-
-* You will find the pact file in `consumer/spec/pacts/foo-bar.json`
-
-### Verify the pact against the provider
-
+* Modify the code in `consumer/spec/bar_spec.rb` to recreate your consumer expectations and actual requests.
 * Modify the code in `provider/bar_app.rb` to recreate the response that your provider will return.
-
-* Run `bundle exec rake pact:verify:foobar` to verify the pact.
+* Run `bundle exec rake` to run the consumer specs, generate the pact file, and verify the pact file.
+* You will find the pact file in `consumer/spec/pacts/foo-bar.json`
+* To run just the consumer specs and generate the pact: `bundle exec rake spec`
+* To run just the provider verification: `bundle exec rake pact:verify:foobar`
 
 ### To recreate issues with a local pact broker
 
