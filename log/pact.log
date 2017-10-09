@@ -1,0 +1,21 @@
+# Logfile created on 2017-10-10 09:48:21 +1100 by logger.rb/56504
+I, [2017-10-10T09:48:21.185810 #74985]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007f8b491180b0> on port 4638...
+I, [2017-10-10T09:48:21.427939 #74985]  INFO -- : Started on port 4638
+I, [2017-10-10T09:48:21.768916 #74985]  INFO -- : Clearing all expectations
+I, [2017-10-10T09:48:21.934730 #74985]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-10T09:48:21.944134 #74985] DEBUG -- : Supposed to be stopping
+I, [2017-10-10T09:48:32.997460 #75013]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fef7214f5f0> on port 4638...
+I, [2017-10-10T09:48:33.125646 #75013]  INFO -- : Started on port 4638
+I, [2017-10-10T09:48:33.189979 #75013]  INFO -- : Clearing all expectations
+I, [2017-10-10T09:48:33.239189 #75013]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-10T09:48:33.247607 #75013] DEBUG -- : Supposed to be stopping
+I, [2017-10-10T09:48:46.143219 #75041]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fd483899108> on port 4638...
+I, [2017-10-10T09:48:46.271334 #75041]  INFO -- : Started on port 4638
+I, [2017-10-10T09:48:46.343136 #75041]  INFO -- : Clearing all expectations
+I, [2017-10-10T09:48:46.392972 #75041]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-10T09:48:46.400770 #75041] DEBUG -- : Supposed to be stopping
+I, [2017-10-10T09:48:47.346893 #75047]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /thing returns a response which has status code 200'
+I, [2017-10-10T09:48:47.347042 #75047]  INFO -- : Sending GET request to path: "/thing" with headers: {"HTTP_ACCEPT"=>"application/json"}, see debug logs for body
+D, [2017-10-10T09:48:47.347066 #75047] DEBUG -- : body :
+I, [2017-10-10T09:48:47.407682 #75047]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"100"}, see debug logs for body
+D, [2017-10-10T09:48:47.407732 #75047] DEBUG -- : body: {"stringBananas":["apple","orange"],"hashBananas":[{"bar":"mandarin"},{"baz":"this key is wrong!"}]}

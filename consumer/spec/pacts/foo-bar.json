@@ -21,22 +21,26 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "company": "My big company",
-          "factories": [
+          "stringBananas": [
+            "a banana"
+          ],
+          "hashBananas": [
             {
-              "location": "Sydney",
-              "capacity": 5
+              "bar": "banana"
             }
           ]
         },
         "matchingRules": {
-          "$.body.company": {
-            "match": "type"
-          },
-          "$.body.factories": {
+          "$.body.stringBananas": {
             "min": 1
           },
-          "$.body.factories[*].*": {
+          "$.body.stringBananas[*].*": {
+            "match": "type"
+          },
+          "$.body.hashBananas": {
+            "min": 1
+          },
+          "$.body.hashBananas[*].*": {
             "match": "type"
           }
         }
