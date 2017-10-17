@@ -9,36 +9,21 @@
     {
       "description": "a retrieve thing request",
       "request": {
-        "method": "get",
-        "path": "/thing",
+        "method": "GET",
+        "path": "/programs/33",
         "headers": {
-          "Accept": "application/json"
+          "Authorization": "A"
+        },
+        "matchingRules": {
+          "$.headers.Authorization": {
+            "match": "regex",
+            "regex": "A|B"
+          }
         }
       },
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": {
-          "company": "My big company",
-          "factories": [
-            {
-              "location": "Sydney",
-              "capacity": 5
-            }
-          ]
-        },
-        "matchingRules": {
-          "$.body.company": {
-            "match": "type"
-          },
-          "$.body.factories": {
-            "min": 1
-          },
-          "$.body.factories[*].*": {
-            "match": "type"
-          }
         }
       }
     }

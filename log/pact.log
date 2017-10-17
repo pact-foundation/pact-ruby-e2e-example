@@ -1,0 +1,46 @@
+# Logfile created on 2017-10-18 06:40:33 +1100 by logger.rb/56815
+I, [2017-10-18T06:40:33.221639 #55643]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007ff663212238> on port 4638...
+I, [2017-10-18T06:40:33.676354 #55643]  INFO -- : Started on port 4638
+I, [2017-10-18T06:40:33.959583 #55643]  INFO -- : Clearing all expectations
+I, [2017-10-18T06:40:34.069751 #55643]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-18T06:40:34.078226 #55643] DEBUG -- : Supposed to be stopping
+I, [2017-10-18T06:40:35.322582 #55645]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /thing returns a response which has status code 200'
+I, [2017-10-18T06:40:35.322707 #55645]  INFO -- : Sending GET request to path: "/thing" with headers: {"HTTP_ACCEPT"=>"application/json"}, see debug logs for body
+D, [2017-10-18T06:40:35.322734 #55645] DEBUG -- : body :
+I, [2017-10-18T06:40:35.364552 #55645]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
+D, [2017-10-18T06:40:35.364600 #55645] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}
+I, [2017-10-18T06:42:16.157429 #55757]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fb480b63668> on port 4638...
+I, [2017-10-18T06:42:16.446184 #55757]  INFO -- : Started on port 4638
+I, [2017-10-18T06:42:16.735204 #55757]  INFO -- : Clearing all expectations
+I, [2017-10-18T06:42:16.853566 #55757]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-18T06:42:16.859687 #55757] DEBUG -- : Supposed to be stopping
+I, [2017-10-18T06:43:04.013205 #55815]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fa26a313490> on port 4638...
+I, [2017-10-18T06:43:04.152530 #55815]  INFO -- : Started on port 4638
+I, [2017-10-18T06:43:04.215947 #55815]  INFO -- : Clearing all expectations
+I, [2017-10-18T06:43:04.262182 #55815]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-18T06:43:04.269070 #55815] DEBUG -- : Supposed to be stopping
+I, [2017-10-18T06:43:05.486901 #55816]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /programs/33 returns a response which has status code 200'
+I, [2017-10-18T06:43:05.487075 #55816]  INFO -- : Sending GET request to path: "/programs/33" with headers: {"HTTP_AUTHORIZATION"=>#<Pact::Term:0x007fa79cb15af8 @generate="A", @matcher=/A|B/>}, see debug logs for body
+D, [2017-10-18T06:43:05.487100 #55816] DEBUG -- : body :
+I, [2017-10-18T06:43:05.530221 #55816]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
+D, [2017-10-18T06:43:05.530274 #55816] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}
+I, [2017-10-18T06:45:16.766564 #55957]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007ffacc806c08> on port 4638...
+I, [2017-10-18T06:45:17.060589 #55957]  INFO -- : Started on port 4638
+I, [2017-10-18T06:45:17.347087 #55957]  INFO -- : Clearing all expectations
+I, [2017-10-18T06:45:17.459046 #55957]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-18T06:45:17.466010 #55957] DEBUG -- : Supposed to be stopping
+I, [2017-10-18T06:45:18.697026 #55964]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /programs/33 returns a response which has status code 200'
+I, [2017-10-18T06:45:18.697174 #55964]  INFO -- : Sending GET request to path: "/programs/33" with headers: {"HTTP_AUTHORIZATION"=>#<Pact::Term:0x007fe85cb05170 @generate="A", @matcher=/A|B/>}, see debug logs for body
+D, [2017-10-18T06:45:18.697201 #55964] DEBUG -- : body :
+I, [2017-10-18T06:45:18.740177 #55964]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
+D, [2017-10-18T06:45:18.740276 #55964] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}
+I, [2017-10-18T06:45:35.461927 #55997]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007ff98c1d3250> on port 4638...
+I, [2017-10-18T06:45:35.600625 #55997]  INFO -- : Started on port 4638
+I, [2017-10-18T06:45:35.661626 #55997]  INFO -- : Clearing all expectations
+I, [2017-10-18T06:45:35.705988 #55997]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2017-10-18T06:45:35.712167 #55997] DEBUG -- : Supposed to be stopping
+I, [2017-10-18T06:45:36.794955 #55998]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /programs/33 returns a response which has status code 200'
+I, [2017-10-18T06:45:36.795103 #55998]  INFO -- : Sending GET request to path: "/programs/33" with headers: {"HTTP_AUTHORIZATION"=>#<Pact::Term:0x007fcad30f66f8 @generate="A", @matcher=/A|B/>}, see debug logs for body
+D, [2017-10-18T06:45:36.795128 #55998] DEBUG -- : body :
+I, [2017-10-18T06:45:36.813917 #55998]  INFO -- : Received response with status: 201, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
+D, [2017-10-18T06:45:36.814006 #55998] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}

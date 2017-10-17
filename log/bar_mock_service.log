@@ -1,0 +1,47 @@
+I, [2017-10-18T06:45:35.664292 #55997]  INFO -- : Cleared interactions before example "BarClient can retrieve a thing"
+I, [2017-10-18T06:45:35.667051 #55997]  INFO -- : Registered expected interaction GET /programs/33
+D, [2017-10-18T06:45:35.667137 #55997] DEBUG -- : {
+  "description": "a retrieve thing request",
+  "request": {
+    "method": "GET",
+    "path": "/programs/33",
+    "headers": {
+      "Authorization": {
+        "json_class": "Pact::Term",
+        "data": {
+          "generate": "A",
+          "matcher": {"json_class":"Regexp","o":0,"s":"A|B"}
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+    }
+  }
+}
+I, [2017-10-18T06:45:35.704511 #55997]  INFO -- : Received request GET /programs/33
+D, [2017-10-18T06:45:35.704616 #55997] DEBUG -- : {
+  "path": "/programs/33",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.12.2",
+    "Authorization": "B",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Accept": "*/*",
+    "Connection": "close",
+    "Host": "localhost:4638",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2017-10-18T06:45:35.704742 #55997]  INFO -- : Found matching response for GET /programs/33
+D, [2017-10-18T06:45:35.704787 #55997] DEBUG -- : {
+  "status": 200,
+  "headers": {
+  }
+}
+I, [2017-10-18T06:45:35.707986 #55997]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2017-10-18T06:45:35.710932 #55997]  INFO -- : Writing pact with details {:consumer=>{:name=>"Foo"}, :provider=>{:name=>"Bar"}, :pactfile_write_mode=>"overwrite", :pact_dir=>"/Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts"}
+I, [2017-10-18T06:45:35.710992 #55997]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json
