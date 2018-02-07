@@ -3,16 +3,18 @@ class BarApp
     status = 200
     headers = {'Content-Type' => 'application/json'}
     body = {
-      "company": "My Company",
-      "factories": [
+      "results": [
         {
-          "location": "Sydney",
-          "capacity": 5
+          "name": "Games",
+          "sort_name": "Games",
+          "id": 11,
+          "shortname": "Games"
         },
         {
-          "location": "Sydney",
-          "geographicCoords": "-0.145,1.4445",
-          "capacity": 5,
+          "name": "Book Clubs",
+          "sort_name": "Book Clubs",
+          "id": 18,
+          "shortname": "Book Clubs"
         }
       ]
     }.to_json

@@ -10,7 +10,7 @@
       "description": "a retrieve thing request",
       "request": {
         "method": "get",
-        "path": "/thing",
+        "path": "/foo",
         "headers": {
           "Accept": "application/json"
         }
@@ -21,23 +21,22 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "company": "My big company",
-          "factories": [
+          "results": [
             {
-              "location": "Sydney",
-              "capacity": 5
+              "name": "Games"
             }
           ]
         },
         "matchingRules": {
-          "$.body.company": {
-            "match": "type"
-          },
-          "$.body.factories": {
+          "$.body.results": {
             "min": 1
           },
-          "$.body.factories[*].*": {
+          "$.body.results[*].*": {
             "match": "type"
+          },
+          "$.body.results[*].name": {
+            "match": "regex",
+            "regex": "Games|Book Clubs"
           }
         }
       }

@@ -1,0 +1,76 @@
+I, [2018-02-07T13:37:06.144957 #96803]  INFO -- : Cleared interactions before example "BarClient can retrieve a thing"
+I, [2018-02-07T13:37:06.148124 #96803]  INFO -- : Registered expected interaction GET /foo
+D, [2018-02-07T13:37:06.148259 #96803] DEBUG -- : {
+  "description": "a retrieve thing request",
+  "request": {
+    "method": "get",
+    "path": "/foo",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "results": {
+        "json_class": "Pact::ArrayLike",
+        "contents": {
+          "name": {
+            "json_class": "Pact::Term",
+            "data": {
+              "generate": "Games",
+              "matcher": {"json_class":"Regexp","o":0,"s":"Games|Book Clubs"}
+            }
+          }
+        },
+        "min": 1
+      }
+    }
+  }
+}
+I, [2018-02-07T13:37:06.173082 #96803]  INFO -- : Received request GET /foo
+D, [2018-02-07T13:37:06.173183 #96803] DEBUG -- : {
+  "path": "/foo",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.12.2",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Connection": "close",
+    "Host": "localhost:4638",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2018-02-07T13:37:06.173341 #96803]  INFO -- : Found matching response for GET /foo
+D, [2018-02-07T13:37:06.173454 #96803] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "results": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "name": {
+          "json_class": "Pact::Term",
+          "data": {
+            "generate": "Games",
+            "matcher": {
+              "json_class": "Regexp",
+              "o": 0,
+              "s": "Games|Book Clubs"
+            }
+          }
+        }
+      },
+      "min": 1
+    }
+  }
+}
+I, [2018-02-07T13:37:06.177059 #96803]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2018-02-07T13:37:06.181861 #96803]  INFO -- : Writing pact with details {:consumer=>{:name=>"Foo"}, :provider=>{:name=>"Bar"}, :pactfile_write_mode=>"overwrite", :pact_dir=>"/Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts"}
+I, [2018-02-07T13:37:06.181970 #96803]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json

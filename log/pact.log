@@ -1,0 +1,16 @@
+# Logfile created on 2018-02-07 13:36:53 +1100 by logger.rb/56815
+I, [2018-02-07T13:36:53.489916 #96786]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fd64634fd40> on port 4638...
+I, [2018-02-07T13:36:53.847858 #96786]  INFO -- : Started on port 4638
+I, [2018-02-07T13:36:54.021857 #96786]  INFO -- : Clearing all expectations
+I, [2018-02-07T13:36:54.070265 #96786]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-02-07T13:36:54.077438 #96786] DEBUG -- : Supposed to be stopping
+I, [2018-02-07T13:37:05.992080 #96803]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007febb6c85010> on port 4638...
+I, [2018-02-07T13:37:06.108727 #96803]  INFO -- : Started on port 4638
+I, [2018-02-07T13:37:06.142151 #96803]  INFO -- : Clearing all expectations
+I, [2018-02-07T13:37:06.174394 #96803]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-02-07T13:37:06.183443 #96803] DEBUG -- : Supposed to be stopping
+I, [2018-02-07T13:37:06.859092 #96807]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /foo returns a response which has status code 200'
+I, [2018-02-07T13:37:06.859217 #96807]  INFO -- : Sending GET request to path: "/foo" with headers: {"HTTP_ACCEPT"=>"application/json"}, see debug logs for body
+D, [2018-02-07T13:37:06.859245 #96807] DEBUG -- : body :
+I, [2018-02-07T13:37:06.876198 #96807]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"158"}, see debug logs for body
+D, [2018-02-07T13:37:06.876249 #96807] DEBUG -- : body: {"results":[{"name":"Games","sort_name":"Games","id":11,"shortname":"Games"},{"name":"Book Clubs","sort_name":"Book Clubs","id":18,"shortname":"Book Clubs"}]}
