@@ -1,6 +1,6 @@
-I, [2018-02-19T19:37:14.985669 #55585]  INFO -- : Cleared interactions before example "BarClient can retrieve a thing"
-I, [2018-02-19T19:37:14.989299 #55585]  INFO -- : Registered expected interaction GET /thing
-D, [2018-02-19T19:37:14.989381 #55585] DEBUG -- : {
+I, [2018-02-19T19:40:23.074690 #55721]  INFO -- : Cleared interactions before example "BarClient can retrieve a thing"
+I, [2018-02-19T19:40:23.078197 #55721]  INFO -- : Registered expected interaction GET /thing
+D, [2018-02-19T19:40:23.078306 #55721] DEBUG -- : {
   "description": "a retrieve thing request",
   "request": {
     "method": "get",
@@ -30,8 +30,8 @@ D, [2018-02-19T19:37:14.989381 #55585] DEBUG -- : {
     }
   }
 }
-I, [2018-02-19T19:37:15.016108 #55585]  INFO -- : Received request GET /thing
-D, [2018-02-19T19:37:15.016200 #55585] DEBUG -- : {
+I, [2018-02-19T19:40:23.105866 #55721]  INFO -- : Received request GET /thing
+D, [2018-02-19T19:40:23.105971 #55721] DEBUG -- : {
   "path": "/thing",
   "query": "",
   "method": "get",
@@ -44,8 +44,8 @@ D, [2018-02-19T19:37:15.016200 #55585] DEBUG -- : {
     "Version": "HTTP/1.1"
   }
 }
-I, [2018-02-19T19:37:15.016339 #55585]  INFO -- : Found matching response for GET /thing
-D, [2018-02-19T19:37:15.016412 #55585] DEBUG -- : {
+I, [2018-02-19T19:40:23.106127 #55721]  INFO -- : Found matching response for GET /thing
+D, [2018-02-19T19:40:23.106262 #55721] DEBUG -- : {
   "status": 200,
   "headers": {
     "Content-Type": "application/json"
@@ -65,6 +65,74 @@ D, [2018-02-19T19:37:15.016412 #55585] DEBUG -- : {
     }
   }
 }
-I, [2018-02-19T19:37:15.020274 #55585]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
-I, [2018-02-19T19:37:15.023874 #55585]  INFO -- : Writing pact with details {:consumer=>{:name=>"Foo"}, :provider=>{:name=>"Bar"}, :pactfile_write_mode=>"overwrite", :pact_dir=>"/Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts"}
-I, [2018-02-19T19:37:15.023935 #55585]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json
+I, [2018-02-19T19:40:23.109921 #55721]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2018-02-19T19:40:23.113541 #55721]  INFO -- : Cleared interactions before example "BarClient can retrieve a thing"
+I, [2018-02-19T19:40:23.116744 #55721]  INFO -- : Registered expected interaction GET /anotherthing
+D, [2018-02-19T19:40:23.116838 #55721] DEBUG -- : {
+  "description": "a retrieve thing request that always passes",
+  "request": {
+    "method": "get",
+    "path": "/anotherthing",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "company": {
+        "json_class": "Pact::SomethingLike",
+        "contents": "My big company"
+      },
+      "factories": {
+        "json_class": "Pact::ArrayLike",
+        "contents": {
+          "location": "Sydney",
+          "capacity": 5
+        },
+        "min": 1
+      }
+    }
+  }
+}
+I, [2018-02-19T19:40:23.119789 #55721]  INFO -- : Received request GET /anotherthing
+D, [2018-02-19T19:40:23.119852 #55721] DEBUG -- : {
+  "path": "/anotherthing",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.12.2",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Connection": "close",
+    "Host": "localhost:4638",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2018-02-19T19:40:23.119971 #55721]  INFO -- : Found matching response for GET /anotherthing
+D, [2018-02-19T19:40:23.120069 #55721] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "company": {
+      "json_class": "Pact::SomethingLike",
+      "contents": "My big company"
+    },
+    "factories": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "location": "Sydney",
+        "capacity": 5
+      },
+      "min": 1
+    }
+  }
+}
+I, [2018-02-19T19:40:23.122990 #55721]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2018-02-19T19:40:23.126204 #55721]  INFO -- : Writing pact with details {:consumer=>{:name=>"Foo"}, :provider=>{:name=>"Bar"}, :pactfile_write_mode=>"overwrite", :pact_dir=>"/Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts"}
+I, [2018-02-19T19:40:23.126294 #55721]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json

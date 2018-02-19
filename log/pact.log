@@ -14,3 +14,27 @@ I, [2018-02-19T19:37:15.534030 #55586]  INFO -- : Sending GET request to path: "
 D, [2018-02-19T19:37:15.534074 #55586] DEBUG -- : body :
 I, [2018-02-19T19:37:15.544159 #55586]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
 D, [2018-02-19T19:37:15.544211 #55586] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}
+I, [2018-02-19T19:40:21.573677 #55717]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007f842e951cd0> on port 4638...
+I, [2018-02-19T19:40:21.689115 #55717]  INFO -- : Started on port 4638
+I, [2018-02-19T19:40:21.726034 #55717]  INFO -- : Clearing all expectations
+I, [2018-02-19T19:40:21.766466 #55717]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+I, [2018-02-19T19:40:21.772399 #55717]  INFO -- : Clearing all expectations
+I, [2018-02-19T19:40:21.782583 #55717]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-02-19T19:40:21.789771 #55717] DEBUG -- : Supposed to be stopping
+I, [2018-02-19T19:40:22.919020 #55721]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fc9d89fbf10> on port 4638...
+I, [2018-02-19T19:40:23.030880 #55721]  INFO -- : Started on port 4638
+I, [2018-02-19T19:40:23.071167 #55721]  INFO -- : Clearing all expectations
+I, [2018-02-19T19:40:23.107245 #55721]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+I, [2018-02-19T19:40:23.110945 #55721]  INFO -- : Clearing all expectations
+I, [2018-02-19T19:40:23.120501 #55721]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-02-19T19:40:23.127970 #55721] DEBUG -- : Supposed to be stopping
+I, [2018-02-19T19:40:23.655448 #55722]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /thing returns a response which has status code 200'
+I, [2018-02-19T19:40:23.655590 #55722]  INFO -- : Sending GET request to path: "/thing" with headers: {"HTTP_ACCEPT"=>"application/json"}, see debug logs for body
+D, [2018-02-19T19:40:23.655613 #55722] DEBUG -- : body :
+I, [2018-02-19T19:40:23.665357 #55722]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
+D, [2018-02-19T19:40:23.665428 #55722] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}
+I, [2018-02-19T19:40:23.667421 #55722]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request that always passes with GET /anotherthing returns a response which has status code 200'
+I, [2018-02-19T19:40:23.667508 #55722]  INFO -- : Sending GET request to path: "/anotherthing" with headers: {"HTTP_ACCEPT"=>"application/json"}, see debug logs for body
+D, [2018-02-19T19:40:23.667548 #55722] DEBUG -- : body :
+I, [2018-02-19T19:40:23.667772 #55722]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
+D, [2018-02-19T19:40:23.667799 #55722] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}

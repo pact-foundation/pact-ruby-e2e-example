@@ -41,6 +41,42 @@
           }
         }
       }
+    },
+    {
+      "description": "a retrieve thing request that always passes",
+      "request": {
+        "method": "get",
+        "path": "/anotherthing",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "company": "My big company",
+          "factories": [
+            {
+              "location": "Sydney",
+              "capacity": 5
+            }
+          ]
+        },
+        "matchingRules": {
+          "$.body.company": {
+            "match": "type"
+          },
+          "$.body.factories": {
+            "min": 1
+          },
+          "$.body.factories[*].*": {
+            "match": "type"
+          }
+        }
+      }
     }
   ],
   "metadata": {
