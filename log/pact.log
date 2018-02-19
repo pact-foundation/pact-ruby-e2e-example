@@ -1,0 +1,16 @@
+# Logfile created on 2018-02-19 19:37:13 +1100 by logger.rb/56504
+I, [2018-02-19T19:37:13.533045 #55581]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fa767a6b100> on port 4638...
+I, [2018-02-19T19:37:13.645890 #55581]  INFO -- : Started on port 4638
+I, [2018-02-19T19:37:13.682079 #55581]  INFO -- : Clearing all expectations
+I, [2018-02-19T19:37:13.719707 #55581]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-02-19T19:37:13.727446 #55581] DEBUG -- : Supposed to be stopping
+I, [2018-02-19T19:37:14.828200 #55585]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fc82fa36f20> on port 4638...
+I, [2018-02-19T19:37:14.945126 #55585]  INFO -- : Started on port 4638
+I, [2018-02-19T19:37:14.982266 #55585]  INFO -- : Clearing all expectations
+I, [2018-02-19T19:37:15.017400 #55585]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-02-19T19:37:15.025414 #55585] DEBUG -- : Supposed to be stopping
+I, [2018-02-19T19:37:15.533861 #55586]  INFO -- : Running example 'Verifying a pact between Foo and Bar A retrieve thing request with GET /thing returns a response which has status code 200'
+I, [2018-02-19T19:37:15.534030 #55586]  INFO -- : Sending GET request to path: "/thing" with headers: {"HTTP_ACCEPT"=>"application/json"}, see debug logs for body
+D, [2018-02-19T19:37:15.534074 #55586] DEBUG -- : body :
+I, [2018-02-19T19:37:15.544159 #55586]  INFO -- : Received response with status: 200, headers: {"Content-Type"=>"application/json", "Content-Length"=>"143"}, see debug logs for body
+D, [2018-02-19T19:37:15.544211 #55586] DEBUG -- : body: {"company":"My Company","factories":[{"location":"Sydney","capacity":5},{"location":"Sydney","geographicCoords":"-0.145,1.4445","capacity":5}]}

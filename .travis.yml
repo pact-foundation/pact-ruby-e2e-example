@@ -1,3 +1,5 @@
 language: ruby
 rvm:
 - 2.2.2
+script:
+  - ./show-that-pacts-are-not-created-when-specs-fail.sh

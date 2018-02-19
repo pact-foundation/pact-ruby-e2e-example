@@ -1,0 +1,70 @@
+I, [2018-02-19T19:37:14.985669 #55585]  INFO -- : Cleared interactions before example "BarClient can retrieve a thing"
+I, [2018-02-19T19:37:14.989299 #55585]  INFO -- : Registered expected interaction GET /thing
+D, [2018-02-19T19:37:14.989381 #55585] DEBUG -- : {
+  "description": "a retrieve thing request",
+  "request": {
+    "method": "get",
+    "path": "/thing",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "company": {
+        "json_class": "Pact::SomethingLike",
+        "contents": "My big company"
+      },
+      "factories": {
+        "json_class": "Pact::ArrayLike",
+        "contents": {
+          "location": "Sydney",
+          "capacity": 5
+        },
+        "min": 1
+      }
+    }
+  }
+}
+I, [2018-02-19T19:37:15.016108 #55585]  INFO -- : Received request GET /thing
+D, [2018-02-19T19:37:15.016200 #55585] DEBUG -- : {
+  "path": "/thing",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.12.2",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Connection": "close",
+    "Host": "localhost:4638",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2018-02-19T19:37:15.016339 #55585]  INFO -- : Found matching response for GET /thing
+D, [2018-02-19T19:37:15.016412 #55585] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "company": {
+      "json_class": "Pact::SomethingLike",
+      "contents": "My big company"
+    },
+    "factories": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "location": "Sydney",
+        "capacity": 5
+      },
+      "min": 1
+    }
+  }
+}
+I, [2018-02-19T19:37:15.020274 #55585]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2018-02-19T19:37:15.023874 #55585]  INFO -- : Writing pact with details {:consumer=>{:name=>"Foo"}, :provider=>{:name=>"Bar"}, :pactfile_write_mode=>"overwrite", :pact_dir=>"/Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts"}
+I, [2018-02-19T19:37:15.023935 #55585]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json
