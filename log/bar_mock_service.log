@@ -1,0 +1,61 @@
+I, [2018-07-05T12:16:03.116733 #56231]  INFO -- : Cleared interactions for example "BarClient can retrieve a thing"
+I, [2018-07-05T12:16:03.118925 #56231]  INFO -- : Registered expected interaction GET /thing
+D, [2018-07-05T12:16:03.119012 #56231] DEBUG -- : {
+  "description": "a retrieve thing request",
+  "request": {
+    "method": "get",
+    "path": "/thing",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "factories": {
+        "json_class": "Pact::ArrayLike",
+        "contents": {
+          "location": "Sydney",
+          "capacity": 5
+        },
+        "min": 3
+      }
+    }
+  }
+}
+I, [2018-07-05T12:16:03.151526 #56231]  INFO -- : Received request GET /thing
+D, [2018-07-05T12:16:03.151620 #56231] DEBUG -- : {
+  "path": "/thing",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.12.2",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Connection": "close",
+    "Host": "localhost:4638",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2018-07-05T12:16:03.151773 #56231]  INFO -- : Found matching response for GET /thing
+D, [2018-07-05T12:16:03.151840 #56231] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "factories": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "location": "Sydney",
+        "capacity": 5
+      },
+      "min": 3
+    }
+  }
+}
+I, [2018-07-05T12:16:03.155220 #56231]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2018-07-05T12:16:03.158830 #56231]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json
