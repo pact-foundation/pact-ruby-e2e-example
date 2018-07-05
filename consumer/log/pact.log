@@ -1,0 +1,21 @@
+# Logfile created on 2018-06-28 08:04:59 +1000 by logger.rb/56815
+I, [2018-06-28T08:04:59.645317 #66899]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007f9978cf23d0> on port 4638...
+I, [2018-06-28T08:05:00.127216 #66899]  INFO -- : Started on port 4638
+I, [2018-06-28T08:05:00.306645 #66899]  INFO -- : Clearing all expectations
+I, [2018-06-28T08:05:00.404007 #66899]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-06-28T08:05:00.413647 #66899] DEBUG -- : Supposed to be stopping
+I, [2018-06-28T08:08:25.641745 #67059]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007ffc8b12c660> on port 4638...
+I, [2018-06-28T08:08:25.756245 #67059]  INFO -- : Started on port 4638
+I, [2018-06-28T08:08:25.953072 #67059]  INFO -- : Clearing all expectations
+I, [2018-06-28T08:08:26.009229 #67059]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-06-28T08:08:26.014599 #67059] DEBUG -- : Supposed to be stopping
+I, [2018-06-28T08:13:00.856795 #67186]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fb3d491b650> on port 4638...
+I, [2018-06-28T08:13:01.007254 #67186]  INFO -- : Started on port 4638
+I, [2018-06-28T08:13:01.049750 #67186]  INFO -- : Clearing all expectations
+I, [2018-06-28T08:13:01.081730 #67186]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-06-28T08:13:01.087408 #67186] DEBUG -- : Supposed to be stopping
+I, [2018-06-28T08:54:23.302042 #68510]  INFO -- : Starting app Bar #<Pact::MockService::App:0x007fe089b8ef90> on port 4638...
+I, [2018-06-28T08:54:23.414119 #68510]  INFO -- : Started on port 4638
+I, [2018-06-28T08:54:23.454988 #68510]  INFO -- : Clearing all expectations
+I, [2018-06-28T08:54:23.489139 #68510]  INFO -- : Verifying interactions for BarClient can retrieve a thing
+D, [2018-06-28T08:54:23.496702 #68510] DEBUG -- : Supposed to be stopping

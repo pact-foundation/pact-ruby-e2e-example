@@ -8,6 +8,7 @@ describe "BarClient", :pact => true do
       upon_receiving("a retrieve thing request").with({
       method: :get,
       path: '/thing',
+      query: { param: Pact.each_like("1") },
       headers: {'Accept' => 'application/json'}
     }).
       will_respond_with({
@@ -21,7 +22,7 @@ describe "BarClient", :pact => true do
 
     # This request would normally be performed some BarClient class,
     # but just use simple request for the purposes of this test
-    bar_response = Faraday.get(bar_service.mock_service_base_url + "/thing", nil, {'Accept' => 'application/json'})
+    bar_response = Faraday.get(bar_service.mock_service_base_url + "/thing?param=1&param=2", {}, {'Accept' => 'application/json'})
 
     # This would normally be checking the results of some deserialisation process,
     # (eg. check for an array of Factory classes )

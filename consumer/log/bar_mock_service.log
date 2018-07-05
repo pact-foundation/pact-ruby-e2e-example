@@ -1,0 +1,76 @@
+I, [2018-06-28T08:54:23.457031 #68510]  INFO -- : Cleared interactions for example "BarClient can retrieve a thing"
+I, [2018-06-28T08:54:23.460084 #68510]  INFO -- : Registered expected interaction GET /thing?param=%5B%221%22%5D
+D, [2018-06-28T08:54:23.460247 #68510] DEBUG -- : {
+  "description": "a retrieve thing request",
+  "request": {
+    "method": "get",
+    "path": "/thing",
+    "query": {
+      "param": {
+        "json_class": "Pact::ArrayLike",
+        "contents": "1",
+        "min": 1
+      }
+    },
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "company": {
+        "json_class": "Pact::SomethingLike",
+        "contents": "My big company"
+      },
+      "factories": {
+        "json_class": "Pact::ArrayLike",
+        "contents": {
+          "location": "Sydney",
+          "capacity": 5
+        },
+        "min": 1
+      }
+    }
+  }
+}
+I, [2018-06-28T08:54:23.487164 #68510]  INFO -- : Received request GET /thing?param=2
+D, [2018-06-28T08:54:23.487317 #68510] DEBUG -- : {
+  "path": "/thing",
+  "query": "param=2",
+  "method": "get",
+  "headers": {
+    "User-Agent": "Faraday v0.15.2",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+    "Connection": "close",
+    "Host": "localhost:4638",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2018-06-28T08:54:23.487634 #68510]  INFO -- : Found matching response for GET /thing?param=%5B%221%22%5D
+D, [2018-06-28T08:54:23.487737 #68510] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "company": {
+      "json_class": "Pact::SomethingLike",
+      "contents": "My big company"
+    },
+    "factories": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "location": "Sydney",
+        "capacity": 5
+      },
+      "min": 1
+    }
+  }
+}
+I, [2018-06-28T08:54:23.491053 #68510]  INFO -- : Verifying - interactions matched for example "BarClient can retrieve a thing"
+I, [2018-06-28T08:54:23.493780 #68510]  INFO -- : Writing pact for Bar to /Users/bethanyskurrie/workspace/pact-foundation/pact-ruby-e2e-example/consumer/spec/pacts/foo-bar.json
