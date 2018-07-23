@@ -4,8 +4,11 @@ if ENV['X_PACT_DEVELOPMENT']
   gem "pact", path: '../pact'
   gem "pact-support", path: '../pact-support'
   gem "pact-mock_service", path: '../pact-mock_service'
+  gem "pact-xml", path: '../pact-xml'
 else
   gem "pact", "~> 1.12"
+  gem "pact-xml", git: "https://github.com/pact-foundation/pact-xml.git"
+  gem "pact-support", git: "https://github.com/pact-foundation/pact-support.git"
 end
 
 gem "pact_broker-client"
