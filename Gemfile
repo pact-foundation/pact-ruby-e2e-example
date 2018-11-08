@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 if ENV['X_PACT_DEVELOPMENT']
-  gem "pact", path: '../pact'
+  gem "pact", "1.33.0"
   gem "pact-support", path: '../pact-support'
   gem "pact-mock_service", path: '../pact-mock_service'
 else
