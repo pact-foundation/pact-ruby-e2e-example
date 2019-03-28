@@ -4,6 +4,8 @@ require 'pact_broker/client/tasks'
 LOCAL_PACT_BROKER_BASE_URL = 'http://localhost:9292'
 REMOTE_PACT_BROKER_BASE_URL = 'https://test.pact.dius.com.au'
 
+# These pact publication tasks would normally be in the consumer codebase,
+# but they're here so we can run the entire consumer/provider flow with one rake command.
 PactBroker::Client::PublicationTask.new(:local) do | task |
   task.consumer_version = "1.0.0"
   task.pact_broker_base_url = LOCAL_PACT_BROKER_BASE_URL
