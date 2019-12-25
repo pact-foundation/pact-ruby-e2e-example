@@ -4,8 +4,12 @@ init:
 
 build: off
 
+cache:
+  - vendor/bundle
+
 install:
-  - set PATH=C:\Ruby22\bin;%PATH%
+  - set PATH=C:\Ruby24-x64\bin;%PATH%
+  - bundle config --local path vendor/bundle
   - bundle install
 
 test_script:
