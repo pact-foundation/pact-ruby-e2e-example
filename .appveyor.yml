@@ -14,4 +14,4 @@ install:
 
 test_script:
   - bundle exec rake spec
-  - C:/Ruby24-x64/bin/ruby.exe -S pact verify --pact-helper ./provider/spec/pact_helper.rb --pact-uri ./consumer/spec/pacts/foo-bar.json
+  - bundle exec C:/Ruby24-x64/bin/ruby.exe -S pact verify --pact-helper ./provider/spec/pact_helper.rb --pact-uri ./consumer/spec/pacts/foo-bar.json
