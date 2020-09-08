@@ -40,4 +40,4 @@ end
 task 'pact:verify:foobar_using_local_broker' => ['pact:set_publish_verification_results_flag', 'pact:publish:local']
 task 'pact:verify:foobar_using_remote_broker' => ['pact:set_publish_verification_results_flag', 'pact:publish:remote']
 
-task 'pact:bethtest' => ['pact:set_publish_verification_results_flag', 'pact:publish:remote', 'pact:verify']
+task 'pact:bethtest:consumer' => ['pact:set_publish_verification_results_flag', 'pact:publish:remote']
