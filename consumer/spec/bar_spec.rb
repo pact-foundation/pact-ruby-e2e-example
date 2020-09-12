@@ -5,6 +5,7 @@ require_relative 'pact_helper'
 describe "BarClient", :pact => true do
   it "can retrieve a thing"  do
     bar_service.
+      given("foo").
       upon_receiving("a retrieve thing request").with({
       method: :get,
       path: '/thing',

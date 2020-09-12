@@ -1,5 +1,6 @@
 require 'pact/tasks/verification_task'
 require 'pact_broker/client/tasks'
+require 'pact/tasks'
 
 LOCAL_PACT_BROKER_BASE_URL = 'http://localhost:9292'
 REMOTE_PACT_BROKER_BASE_URL = 'https://test.pact.dius.com.au'
@@ -7,13 +8,13 @@ REMOTE_PACT_BROKER_BASE_URL = 'https://test.pact.dius.com.au'
 # These pact publication tasks would normally be in the consumer codebase,
 # but they're here so we can run the entire consumer/provider flow with one rake command.
 PactBroker::Client::PublicationTask.new(:local) do | task |
-  task.consumer_version = "1.0.0"
+  task.consumer_version = "10.0.0"
   task.pact_broker_base_url = LOCAL_PACT_BROKER_BASE_URL
   task.pattern = "consumer/spec/pacts/*.json"
 end
 
 PactBroker::Client::PublicationTask.new(:remote) do | task |
-  task.consumer_version = "1.0.0"
+  task.consumer_version = "10.0.0"
   task.pact_broker_base_url = REMOTE_PACT_BROKER_BASE_URL
   task.pact_broker_basic_auth =  { username: ENV['PACT_BROKER_USERNAME'], password: ENV['PACT_BROKER_PASSWORD']}
   task.pattern = "consumer/spec/pacts/*.json"

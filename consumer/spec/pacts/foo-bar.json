@@ -8,6 +8,7 @@
   "interactions": [
     {
       "description": "a retrieve thing request",
+      "providerState": "foo",
       "request": {
         "method": "get",
         "path": "/thing",
