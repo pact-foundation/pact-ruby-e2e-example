@@ -7,4 +7,5 @@ unset PACT_BROKER_TOKEN
 
 bundle exec rake spec
 bundle exec rake pact:publish:remote
+cd provider
 bundle exec rake pact:verify
