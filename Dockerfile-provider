@@ -1,0 +1,5 @@
+FROM ruby:2.7-alpine
+
+RUN apk add --update --no-cache make gcc libc-dev
+COPY Gemfile Gemfile.lock $HOME/
+RUN bundle install

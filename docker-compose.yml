@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  pact-broker:
+    image: pactfoundation/pact-broker:2.65.0.0
+    ports:
+      - "9292:9292"
+    environment:
+      PACT_BROKER_PORT: '9292'
+      PACT_BROKER_LOG_LEVEL: WARN
+      PACT_BROKER_SQL_LOG_LEVEL: debug
+      PACT_BROKER_DATABASE_ADAPTER: sqlite
+      PACT_BROKER_DATABASE_NAME: /tmp/pact_broker_database.sqlite3
+
+  publish_pacts:
+    image: pactfoundation/pact-cli
+    depends_on:
+      - pact-broker
+    environment:
+      PACT_BROKER_BASE_URL: http://pact-broker:9292
+    command: /command.sh
+    entrypoint: /bin/sh
+    volumes:
+      - ./consumer/spec/pacts:/pacts
+      - ./docker/publish-pacts-command.sh:/command.sh
+
+  verify-pacts:
+    build:
+      context: .
+      dockerfile: Dockerfile-provider
+    depends_on:
+      - pact-broker
+    environment:
+      PACT_BROKER_BASE_URL: http://pact-broker:9292
+    entrypoint: /bin/sh
+    command: /command.sh
+    volumes:
+      - ./provider:/provider
+      - ./docker/verify-pacts-command.sh:/command.sh

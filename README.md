@@ -8,49 +8,40 @@ This code base is _not_ intended as an example of a best practice pact implement
 
 ## Usage
 
+### Prerequisites
+
+Install Docker and Docker Compose.
+
 ### Fork and clone the codebase
 
     # Fork the repository using the 'Fork' button on the repository home page, then:
     git clone git@github.com:YOUR_USERNAME/pact-ruby-e2e-example.git
     cd pact-ruby-e2e-example
+    git checkout feat/docker-compose
 
 ### Set the gem versions you are using
 
 * Open up the `Gemfile` and set the exact gem versions you are using. eg `gem "pact", "1.12.1"`
 
-* Run `bundle update`
+* Run `bundle update` (requires bundler 2.1.4)
 
-### Set up consumer and provider
+* Open docker-compose.yml and set the exact version of the Pact Broker you are using.
 
-* Modify the code in `consumer/spec/bar_spec.rb` to recreate your consumer expectations and actual requests.
-* Modify the code in `provider/bar_app.rb` to recreate the response that your provider will return.
-* Run `bundle exec rake` to run the consumer specs, generate the pact file, and verify the pact file.
-* You will find the pact file in `consumer/spec/pacts/foo-bar.json`
-* To run just the consumer specs and generate the pact: `bundle exec rake spec`
-* To run just the provider verification: `bundle exec rake pact:verify:foobar`
+### Update pacts
 
-### To recreate issues with a local pact broker
+* The pacts are published from docker/publish-pacts-command.sh. Update the pact contents and publishing so that they match your situation.
 
-* Set the exact gem versions in `pact_broker/Gemfile` and run `bundle update`.
+### Update verifications
 
-* In another terminal, cd into the `pact_broker` directory and run `bundle exec rackup`.
+* The verification configuration is in provider/spec/pact_helper.rb. Update it to to match your situation.
 
-* Follow the above instructions for setting up the consumer and provider code.
+### Run the example
 
-* In the root directory of this project, run `bundle exec rake pact:verify:foobar_using_local_broker`
+Execute:
 
-### To recreate issues with a remote pact broker
-
-* In the `Rakefile` set the `REMOTE_PACT_BROKER_BASE_URL` to the value of your pact broker.
-
-* Follow the above instructions for setting up the consumer and provider code.
-
-* Set the `PACT_BROKER_USERNAME` and `PACT_BROKER_PASSWORD` environment variables if you are using a broker with basic auth.
-
-      export PACT_BROKER_USERNAME=your_username
-      export PACT_BROKER_PASSWORD=your_password
-
-* In the root directory of this project, run `bundle exec rake pact:verify:foobar_using_remote_broker`
+```
+./run.sh
+```
 
 ## Reporting an issue
 
