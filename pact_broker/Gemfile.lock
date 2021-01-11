@@ -115,7 +115,7 @@ GEM
       rack
     rake (13.0.1)
     randexp (0.1.7)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     reform (2.3.3)
       disposable (>= 0.4.2, < 0.5.0)
       representable (>= 2.4.0, < 3.1.0)
