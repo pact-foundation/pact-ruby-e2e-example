@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-gem 'pact_broker', '~>2.0'
+gem 'pact_broker', '~>2'
 gem 'sqlite3'
 gem 'thin'
 gem 'pry-byebug'
+
+gem "sucker_punch", git: "https://github.com/pact-foundation/sucker_punch.git",
+                    ref: "fix/rename-is-singleton-class-method-2"

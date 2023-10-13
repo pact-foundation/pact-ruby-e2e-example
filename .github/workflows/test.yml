@@ -1,0 +1,23 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby_version: ["2.7","3.0","3.1","3.2"]
+        os: ["ubuntu-latest","windows-latest","macos-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby_version }}
+      - run: "bundle install"
+      - run: "bundle exec rake spec"
+      - run: "bundle exec rake pact:verify:foobar"
+        if: matrix.os != 'windows-latest'
+      - run: "ruby.exe -S pact verify --pact-helper ./provider/spec/pact_helper.rb --pact-uri ./consumer/spec/pacts/foo-bar.json"
+        if: matrix.os == 'windows-latest'
