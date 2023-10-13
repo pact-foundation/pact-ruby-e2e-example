@@ -1,6 +1,6 @@
 # Pact Ruby End to End Example
 
-[![Build Status](https://travis-ci.org/pact-foundation/pact-ruby-e2e-example.svg?branch=master)](https://travis-ci.org/pact-foundation/pact-ruby-e2e-example)
+[![Test](https://github.com/pact-foundation/pact-ruby-e2e-example/actions/workflows/test.yml/badge.svg)](https://github.com/pact-foundation/pact-ruby-e2e-example/actions/workflows/test.yml)
 
 Code base to use for demonstrating features or recreating issues in the ruby implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
 
