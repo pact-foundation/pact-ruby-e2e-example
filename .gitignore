@@ -1,1 +1,5 @@
 pact_broker/log
+Gemfile.lock
+*.sqlite3
+/log
+/provider/reports
