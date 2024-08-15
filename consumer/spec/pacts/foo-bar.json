@@ -33,10 +33,7 @@
           "$.body.company": {
             "match": "type"
           },
-          "$.body.factories": {
-            "min": 1
-          },
-          "$.body.factories[*].*": {
+          "$.body.factories[0]": {
             "match": "type"
           }
         }
