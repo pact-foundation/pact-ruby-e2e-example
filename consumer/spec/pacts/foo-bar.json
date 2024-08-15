@@ -27,7 +27,9 @@
               "location": "Sydney",
               "capacity": 5
             }
-          ]
+          ],
+          "received_at": "2017-10-23T11:50:12Z",
+          "received_at_matcher": "2017-10-23T11:50:12Z"
         },
         "matchingRules": {
           "$.body.company": {
@@ -38,6 +40,14 @@
           },
           "$.body.factories[*].*": {
             "match": "type"
+          },
+          "$.body.received_at": {
+            "match": "regex",
+            "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d([+-][0-2]\\d:[0-5]\\d|Z)$"
+          },
+          "$.body.received_at_matcher": {
+            "match": "regex",
+            "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d([+-][0-2]\\d:[0-5]\\d|Z)$"
           }
         }
       }

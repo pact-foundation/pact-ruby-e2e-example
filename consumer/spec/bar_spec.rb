@@ -15,7 +15,9 @@ describe "BarClient", :pact => true do
       headers: { 'Content-Type' => 'application/json' },
       body: {
         company: Pact.like("My big company"),
-        factories: Pact.each_like(location: "Sydney", capacity: 5)
+        factories: Pact.each_like(location: "Sydney", capacity: 5),
+        received_at: Pact.term(generate: "2017-10-23T11:50:12Z", matcher: /^\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|Z)$/),
+        received_at_matcher: Pact.like_datetime("2017-10-23T11:50:12Z")
       }
     })
 
