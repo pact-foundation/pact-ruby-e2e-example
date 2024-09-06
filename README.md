@@ -64,4 +64,4 @@ This code base is _not_ intended as an example of a best practice pact implement
 * Open an issue in the appropriate codebase (see [pact-foundation][pact-foundation] for most of the repositories) and include a link to your branch.
 
 [pact-foundation]: https://github.com/pact-foundation
-[example]: https://github.com/realestate-com-au/pact/tree/master/example
+[example]: https://github.com/pact-foundation/pact-ruby/tree/master/example
