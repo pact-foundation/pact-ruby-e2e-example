@@ -11,5 +11,5 @@ end
 gem "pact_broker-client"
 gem "rake", "~> 12"
 gem "rspec", "~> 3"
-gem "faraday", "~> 1.0", "< 3.0"
+gem "faraday", "~> 2.0", "< 3.0"
 gem "pry-byebug", "~> 3"
