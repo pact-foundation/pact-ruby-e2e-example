@@ -36,9 +36,6 @@ jobs:
         shell: bash
         name: Start Pact Broker
         working-directory: pact_broker
-      # - run: "bundle install"
-      #   name: Install dependencies (e2e)
-      #   working-directory: ${{ matrix.project }}
       - run: "bundle exec rake pact:spec"
         name: Pact consumer tests
         working-directory: ${{ matrix.project }}

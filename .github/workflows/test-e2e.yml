@@ -15,7 +15,6 @@ jobs:
       matrix:
         ruby_version: ["3.2", "3.3", "3.4"]
         os: ["ubuntu-latest","windows-latest","macos-latest"]
-        project: [e2e,e2e-pact-ruby-v1]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -23,10 +22,14 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
-          bundler-cache: true
-          working-directory: ${{ matrix.project }}
+      # e2e - v1
       - run: "bundle exec rake pact:spec"
-        working-directory: ${{ matrix.project }}
+        working-directory: e2e-pact-ruby-v1
       - run: "bundle exec rake pact:verify:foobar"
-        working-directory: ${{ matrix.project }}
+        working-directory: e2e-pact-ruby-v1
         if: matrix.os != 'windows-latest'
+      # e2e - v2
+      - run: "bundle exec rake pact:spec"
+        working-directory: e2e-pact-ruby-v2
+      - run: "bundle exec rake pact:verify:foobar"
+        working-directory: e2e-pact-ruby-v2

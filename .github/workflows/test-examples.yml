@@ -1,0 +1,70 @@
+name: "Test transport type: http/kafka/grpc/mixed"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["3.2", "3.3", "3.4"]
+        os: [ windows-latest, macos-13, macos-14, ubuntu-latest ]
+    env:
+      RUBY_VERSION: ${{ matrix.ruby }}
+    name: Ruby ${{ matrix.ruby }}-${{ matrix.os }}-${{ matrix.type }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Ruby
+        if: env.ACT == 'true' && runner.arch == 'ARM64'
+        run: sudo apt-get update && apt-get install -y ruby-full ruby-bundler
+      - name: Setup Ruby w/ same version as image
+        uses: ruby/setup-ruby@v1
+        with:
+            ruby-version: ${{ matrix.ruby }}
+      # http
+      - name: Install dependencies
+        run: make install
+        working-directory: http
+      - name: Run tests
+        run: make
+        working-directory: http
+      # kafka
+      - name: Install dependencies
+        if: runner.os != 'Windows'
+        run: make install
+        working-directory: kafka
+      - name: Run tests
+        if: runner.os != 'Windows'
+        run: make
+        working-directory: kafka
+      # grpc
+      - name: Install dependencies
+        run: make install
+        working-directory: grpc
+      - name: Run tests
+        run: make
+        working-directory: grpc
+      # message
+      - name: Install dependencies
+        run: make install
+        working-directory: message
+      - name: Run tests
+        run: make
+        working-directory: message
+      # mixed
+      - name: Install dependencies
+        if: runner.os != 'Windows'
+        run: make install
+        working-directory: mixed
+      - name: Run tests
+        if: runner.os != 'Windows'
+        run: make
+        working-directory: mixed  
