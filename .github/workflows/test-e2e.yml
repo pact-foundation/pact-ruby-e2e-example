@@ -23,13 +23,17 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby_version }}
       # e2e - v1
+      - run: "bundle install"
+        working-directory: e2e-pact-ruby-v1
       - run: "bundle exec rake pact:spec"
         working-directory: e2e-pact-ruby-v1
       - run: "bundle exec rake pact:verify:foobar"
         working-directory: e2e-pact-ruby-v1
         if: matrix.os != 'windows-latest'
       # e2e - v2
+      - run: "bundle install"
+        working-directory: e2e
       - run: "bundle exec rake pact:spec"
-        working-directory: e2e-pact-ruby-v2
+        working-directory: e2e
       - run: "bundle exec rake pact:verify:foobar"
-        working-directory: e2e-pact-ruby-v2
+        working-directory: e2e
