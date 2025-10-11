@@ -1,0 +1,89 @@
+{
+  "consumer": {
+    "name": "pact-v2-test-app"
+  },
+  "interactions": [
+    {
+      "description": "getting a pet",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "pet exists",
+          "params": {
+            "pet_id": 123
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/pets/123"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "pet": {
+              "bark": true,
+              "breed": "Husky",
+              "id": 123
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.pet.bark": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "boolean"
+                }
+              ]
+            },
+            "$.pet.breed": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "(?-mix:.*)"
+                }
+              ]
+            },
+            "$.pet.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-ruby-v2": {
+      "pact-ffi": "0.4.28"
+    },
+    "pactRust": {
+      "ffi": "0.4.28",
+      "mockserver": "1.2.16",
+      "models": "1.3.5"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "pact-v2-test-app"
+  }
+}

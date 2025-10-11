@@ -1,0 +1,47 @@
+{
+  "consumer": {
+    "name": "Test Message Consumer"
+  },
+  "provider": {
+    "name": "Test Message Producer"
+  },
+  "messages": [
+    {
+      "description": "a customer created message",
+      "providerStates": [
+        {
+          "name": "A customer is created",
+          "params": {
+        }
+        }
+      ],
+      "contents": {
+        "email": "jane@example.com",
+        "first_name": "Jane"
+      },
+      "matchingRules": {
+        "body": {
+          "$.email": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.first_name": {
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  }
+}

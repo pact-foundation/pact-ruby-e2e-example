@@ -1,4 +1,4 @@
-name: Test
+name: Test e2e/e2e-v1
 
 on:
   push:
@@ -15,15 +15,18 @@ jobs:
       matrix:
         ruby_version: ["3.2", "3.3", "3.4"]
         os: ["ubuntu-latest","windows-latest","macos-latest"]
+        project: [e2e,e2e-pact-ruby-v1]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby_version }}
-      - run: "bundle install"
-      - run: "bundle exec rake spec"
+          bundler-cache: true
+          working-directory: ${{ matrix.project }}
+      - run: "bundle exec rake pact:spec"
+        working-directory: ${{ matrix.project }}
       - run: "bundle exec rake pact:verify:foobar"
+        working-directory: ${{ matrix.project }}
         if: matrix.os != 'windows-latest'
-      - run: "ruby.exe -S pact verify --pact-helper ./provider/spec/pact_helper.rb --pact-uri ./consumer/spec/pacts/foo-bar.json"
-        if: matrix.os == 'windows-latest'

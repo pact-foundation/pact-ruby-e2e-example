@@ -1,5 +1,12 @@
+spec/pacts
+logs
+log
+
+## e2e project
 pact_broker/log
 Gemfile.lock
 *.sqlite3
 /log
 /provider/reports
+
+# !pact_broker/Gemfile.lock

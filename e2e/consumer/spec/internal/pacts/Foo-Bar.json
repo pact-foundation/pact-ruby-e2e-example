@@ -1,0 +1,80 @@
+{
+  "consumer": {
+    "name": "Foo"
+  },
+  "interactions": [
+    {
+      "description": "http: a retrieve thing request",
+      "pending": false,
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/thing"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "company": "My big company",
+            "factories": [
+              {
+                "capacity": 5,
+                "location": "Sydney"
+              }
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.company": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.factories": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "transport": "http",
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.22",
+      "mockserver": "1.2.9",
+      "models": "1.2.3"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    },
+    "pact-ruby-v2": {
+      "pact-ffi": "0.4.28"
+    }
+  },
+  "provider": {
+    "name": "Bar"
+  }
+}
