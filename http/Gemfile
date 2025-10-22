@@ -1,15 +1,20 @@
 source 'http://rubygems.org'
 
-gem 'combustion'
 gem 'faraday', '~> 2.0', '< 3.0'
 gem 'rake', '~> 13'
 gem 'rspec'
 gem 'rspec-rails'
+
 if ENV['X_PACT_DEVELOPMENT']
-  gem 'pact', path: '../pact-ruby'
+  gem 'pact', path: '../../pact-ruby'
+  gem 'pact-ffi', path: '../../pact-ruby-ffi'
 else
   gem 'pact'
+  gem 'pact-ffi', '~> 0.4.28'
 end
+# for pact v2 support helpers (activesupport)
+gem 'combustion'
+# for provider verification
 gem 'webmock'
-
+# required in pact v2 on windows
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
