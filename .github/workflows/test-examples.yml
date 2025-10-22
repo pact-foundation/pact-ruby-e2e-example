@@ -21,7 +21,7 @@ jobs:
     name: Ruby ${{ matrix.ruby }}-${{ matrix.os }}-${{ matrix.type }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup Ruby
         if: env.ACT == 'true' && runner.arch == 'ARM64'
         run: sudo apt-get update && apt-get install -y ruby-full ruby-bundler
