@@ -1,0 +1,66 @@
+{
+  "consumer": {
+    "name": "Test Message Consumer"
+  },
+  "interactions": [
+    {
+      "contents": {
+        "content": {
+          "email": "jane@example.com",
+          "first_name": "Jane"
+        },
+        "contentType": "application/json",
+        "encoded": false
+      },
+      "description": "a customer created message",
+      "matchingRules": {
+        "body": {
+          "$.email": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          },
+          "$.first_name": {
+            "combine": "AND",
+            "matchers": [
+              {
+                "match": "type"
+              }
+            ]
+          }
+        }
+      },
+      "metadata": {
+        "contentType": "application/json"
+      },
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "A customer is created",
+          "params": {
+            "contentType": "application/json"
+          }
+        }
+      ],
+      "type": "Asynchronous/Messages"
+    }
+  ],
+  "metadata": {
+    "pact-ruby-v2": {
+      "pact-ffi": "0.4.28"
+    },
+    "pactRust": {
+      "ffi": "0.4.28",
+      "models": "1.3.5"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "Test Message Provider"
+  }
+}

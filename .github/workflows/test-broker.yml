@@ -1,0 +1,81 @@
+name: Test Broker Workflow
+
+on:
+  # push:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby_version: ["3.3"]
+        os: [
+          "ubuntu-latest",
+          "windows-latest",
+          "macos-latest"
+          ]
+        project: [e2e]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby_version }}
+          bundler-cache: true
+          working-directory: ${{ matrix.project }}
+      - run: bundle install
+        name: Install dependencies (pact_broker)
+        working-directory: pact_broker
+      - run: bundle exec rackup -s puma --pid broker.pid &
+        shell: bash
+        name: Start Pact Broker
+        working-directory: pact_broker
+      - run: "bundle exec rake pact:spec"
+        name: Pact consumer tests
+        working-directory: ${{ matrix.project }}
+      - run: "bundle exec rake pact:verify:foobar"
+        name: Pact provider verification (directory)
+        working-directory: ${{ matrix.project }}
+      - run: "bundle exec rake pact:publish"
+        name: Publish pacts to broker
+        working-directory: ${{ matrix.project }}/consumer
+      - run: "bundle exec rake pact:verify:foobar"
+        name: Pact provider verification (broker via PACT_URL)
+        working-directory: ${{ matrix.project }}/provider
+        env:
+          PACT_URL: http://localhost:9292/pacts/provider/Bar/consumer/Foo/latest
+      - run: "bundle exec rake pact:verify:foobar"
+        name: Pact provider verification (broker via consumer version selectors)
+        working-directory: ${{ matrix.project }}/provider
+        env:
+          PACT_BROKER_URL: http://localhost:9292
+      - run: "bundle exec rake pact:verify:foobar"
+        name: Pact provider verification (broker via PACT_URL) with published results
+        working-directory: ${{ matrix.project }}/provider
+        env:
+          PACT_URL: http://localhost:9292/pacts/provider/Bar/consumer/Foo/latest
+          PACT_PUBLISH_VERIFICATION_RESULTS: true
+      - run: "bundle exec rake pact:verify:foobar"
+        name: Pact provider verification (broker via consumer version selectors) with published results
+        working-directory: ${{ matrix.project }}/provider
+        env:
+          PACT_BROKER_URL: http://localhost:9292
+          PACT_PUBLISH_VERIFICATION_RESULTS: true
+      - run: kill -9 $(cat broker.pid)
+        shell: bash
+        name: Stop Pact Broker
+        working-directory: pact_broker
+        if: runner.os != 'Windows'
+
+      - run: |
+          for /f %%i in (broker.pid) do taskkill /PID %%i /F
+        shell: cmd
+        name: Stop Pact Broker (Windows)
+        working-directory: pact_broker
+        if: runner.os == 'Windows'

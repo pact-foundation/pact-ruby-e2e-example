@@ -1,0 +1,12 @@
+task 'pact:spec' do
+  sh 'cd consumer && bundle exec rake pact:spec'
+end
+task 'pact:verify:foobar' do
+  sh 'cd provider && bundle exec rake pact:verify:foobar'
+end
+task 'pact:e2e' => ['pact:spec', 'pact:verify:foobar']
+
+# task 'pact:e2e:local' => ['spec', 'pact:verify:foobar_using_local_broker']
+# task 'pact:e2e:remote' => ['spec', 'pact:verify:foobar_using_remote_broker']
+
+task :default => 'pact:e2e'

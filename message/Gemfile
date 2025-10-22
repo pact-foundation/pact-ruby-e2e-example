@@ -1,0 +1,21 @@
+source "https://rubygems.org"
+
+group :development, :test do
+
+  gem 'pry'
+
+  gem 'rspec'
+
+  gem 'pact-message'
+
+  gem 'rake'
+  if ENV['X_PACT_DEVELOPMENT']
+    gem 'pact', path: '../pact-ruby'
+  else
+    gem 'pact'
+  end
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+  gem 'combustion'
+  gem 'webmock'
+
+end
