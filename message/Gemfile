@@ -6,16 +6,24 @@ group :development, :test do
 
   gem 'rspec'
 
+  # for pact v1 message support
   gem 'pact-message'
 
   gem 'rake'
+
   if ENV['X_PACT_DEVELOPMENT']
-    gem 'pact', path: '../pact-ruby'
+    gem 'pact', path: '../../pact-ruby'
+    gem 'pact-ffi', path: '../../pact-ruby-ffi'
   else
     gem 'pact'
+    gem 'pact-ffi', '~> 0.4.28'
   end
-  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+  # for pact v2 support helpers (activesupport)
   gem 'combustion'
+  # for provider verification
   gem 'webmock'
+  # required in pact v2 on windows
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
 
 end
