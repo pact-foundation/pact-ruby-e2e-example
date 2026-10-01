@@ -10,7 +10,7 @@ if ENV['X_PACT_DEVELOPMENT']
   gem 'pact-ffi', path: '../../pact-ruby-ffi'
 else
   gem 'pact'
-  gem 'pact-ffi', '~> 0.4.28'
+  gem 'pact-ffi', '~> 0.5.0'
 end
 # for pact v2 support helpers (activesupport)
 gem 'combustion'
